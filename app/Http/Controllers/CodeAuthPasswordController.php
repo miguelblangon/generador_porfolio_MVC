@@ -17,13 +17,14 @@ class CodeAuthPasswordController extends Controller
         $this->userController=$userController;
     }
     public function sendPassword(Request $request) {
+
+
+
+
         $email= $request->email;
         $user =User::where('email',$email);
+
         if ($user->count() > 0) {
-
-
-
-
             //Genero el codigo
             $codigo= $this->codigoAleatorio();
             //Actualizo el password
@@ -34,12 +35,9 @@ class CodeAuthPasswordController extends Controller
             session(['email_autenticacion' => $email]);
             //Devuelvo la vista
             return view('auth.passwordCode', ['email' => $email ]);
-
-
         }else {
             return redirect()->route('login');
         }
-
     }
     public function autenticationCode(Request $request){
 

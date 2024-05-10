@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::post('/code_mailer', [App\Http\Controllers\CodeAuthPasswordController::class, 'sendPassword'])->name('code_mailer');
-Route::post('/code_autentication', [App\Http\Controllers\CodeAuthPasswordController::class, 'autenticationCode'])->name('code_autentication');
-//Route::post('/code_loggin', [App\Http\Controllers\CodeAuthPasswordController::class, 'autenticationLoggin'])->name('code_loggin');
+Route::post('/code_mailer', [App\Http\Controllers\CodeAuthPasswordController::class, 'sendPassword'])->name('code_mailer')->middleware('checkip');
+Route::post('/code_autentication', [App\Http\Controllers\CodeAuthPasswordController::class, 'autenticationCode'])->name('code_autentication')->middleware('checkip');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/porfolio', [App\Http\Controllers\PlantillaUsuarioController::class, 'index'])->name('porfolio');
 
 Route::resources([
     'roles' => App\Http\Controllers\RoleController::class,
