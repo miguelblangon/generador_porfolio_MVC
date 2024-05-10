@@ -18,4 +18,7 @@ class AntiSpanController extends Controller
             $model->save();
         }
     }
+    public function searchForIp(string $ip):AntiSpan|null {
+        return AntiSpan::where('ip',$ip)->first();
+    }
 }
