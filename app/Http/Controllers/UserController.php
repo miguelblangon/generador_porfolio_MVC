@@ -8,8 +8,10 @@ use App\Http\Requests\UpdateUserRequest;
 
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
@@ -30,11 +32,14 @@ class UserController extends Controller
      */
     public function index()
     {
-
-
-        // return view('users.index', [
-        //     'users' => User::latest('id')->paginate(3)
-        // ]);
+        $model = User::orderBy('id','DESC')->get(['id','name','email']);
+        $array = [];
+        foreach ($model as  $value) {
+            $array[]= $value->row;
+        }
+        return view('users.index', [
+            'models' => $array
+        ]);
     }
 
     /**
@@ -77,17 +82,18 @@ class UserController extends Controller
      */
     public function edit(User $user): View
     {
-        // Check Only Super Admin can update his own Profile
+        // Check Only Super Admin can update his [own Profile
         if ($user->hasRole('Super Admin')){
             if($user->id != auth()->user()->id){
                 abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSIONS');
             }
         }
-
         return view('users.edit', [
             'user' => $user,
-            'roles' => Role::pluck('name')->all(),
-            'userRoles' => $user->roles->pluck('name')->all()
+            'roles' => Role::pluck('name','id')->all(),
+            'userRoles' => $user->roles->pluck('id')->toArray(),
+            'permission'=>Permission::pluck('name','id')->toArray(),
+            'userPermission'=>$user->getAllPermissions()->pluck('id')->toArray()
         ]);
     }
 

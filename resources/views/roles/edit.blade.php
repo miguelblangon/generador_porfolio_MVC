@@ -12,9 +12,7 @@
 {{-- Minimal without header / body only --}}
 <x-adminlte-card theme="lightblue" theme-mode="outline">
     <div class="row">
-        <div class="col text-right pb-2">
-            <a href="{{ route('roles.index') }}" class="btn btn-primary btn-sm" role="button">Volver</a>
-        </div>
+        @include('componentes.EnlaceParam',["ruta"=>'roles.index','color'=>'primary','mensaje'=>'Volver' ])
     </div>
     <form action="{{ route('roles.update',$role->id) }}" method="post">
         @csrf

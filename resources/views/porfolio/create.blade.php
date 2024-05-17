@@ -3,9 +3,9 @@
 
 {{-- Customize layout sections --}}
 
-@section('subtitle', 'Index')
+@section('subtitle', 'Crear')
 @section('content_header_title', 'Porfolio')
-@section('content_header_subtitle', 'Index')
+@section('content_header_subtitle', 'Crear')
 
 {{-- Content body: main page content --}}
 
@@ -14,7 +14,7 @@
 <x-adminlte-card theme="lightblue" theme-mode="outline">
     <div class="row">
         <div class="col-12 text-right">
-            <a href="{{ route('porfolio.create') }}" class="btn btn-success btn-sm" role="button">Crear</a>
+            <a href="{{ route('porfolio.index') }}" class="btn btn-primary btn-sm" role="button">Volver</a>
         </div>
     </div>
     <p>Bienvenido a esta seccion donde podras crear tu porfolio</p>
