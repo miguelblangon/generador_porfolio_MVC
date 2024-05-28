@@ -1,15 +1,3 @@
-@php
-$config = [
-    'onColor' => 'indigo',
-    'offColor' => 'gray',
-    'onText' => '1',
-    'offText' => '0',
-    'indeterminate' => false,
-    'labelText' => '<i class="fas fa-power-off text-muted"></i>',
-];
-@endphp
-
-
 <div class="row g-6">
 @foreach ($coleccion as $key => $item)
     <div class="col-6">

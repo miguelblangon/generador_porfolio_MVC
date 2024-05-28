@@ -109,15 +109,10 @@ class RoleController extends Controller
         if($role->name=='Super Admin'){
             abort(403, 'El ROL SUPER ADMIN NO PUEDE SER EDITADO');
         }
-
-        $rolePermissions = DB::table("role_has_permissions")->where("role_id",$role->id)
-            ->pluck('permission_id')
-            ->all();
-
         return view('roles.edit', [
             'role' => $role,
-            'permissions' => Permission::get(['id','name'])->pluck('name','id')->toArray() ,
-            'rolePermissions' => $rolePermissions
+            'permissions' => Permission::get(['id','name'])->pluck('name','name')->toArray() ,
+            'rolePermissions' => $role->permissions->pluck('name','name')->toArray()
         ]);
     }
 
@@ -126,13 +121,10 @@ class RoleController extends Controller
      */
     public function update(UpdateRoleRequest $request, Role $role): RedirectResponse
     {
+
         $input = $request->only('name');
-
         $role->update($input);
-
-        $permissions = Permission::whereIn('id', $request->permissions)->get(['name'])->toArray();
-
-        $role->syncPermissions($permissions);
+        $role->syncPermissions($request->permissions);
 
         return redirect()->back()
                 ->with(['message'=>'Rol Actualizado','icon'=>'success']);

@@ -5,14 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
-
 class UserController extends Controller
 {
     /**
@@ -90,10 +87,10 @@ class UserController extends Controller
         }
         return view('users.edit', [
             'user' => $user,
-            'roles' => Role::pluck('name','id')->all(),
-            'userRoles' => $user->roles->pluck('id')->toArray(),
-            'permission'=>Permission::pluck('name','id')->toArray(),
-            'userPermission'=>$user->getAllPermissions()->pluck('id')->toArray()
+            'roles' => Role::pluck('name','name')->all(),
+            'userRoles' => $user->roles->pluck('name','name')->toArray(),
+            'permission'=>Permission::pluck('name','name')->toArray(),
+            'userPermission'=>$user->getAllPermissions()->pluck('name')->toArray()
         ]);
     }
 
@@ -102,20 +99,10 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        $input = $request->all();
-
-        if(!empty($request->password)){
-            $input['password'] = Hash::make($request->password);
-        }else{
-            $input = $request->except('password');
-        }
-
-        $user->update($input);
-
         $user->syncRoles($request->roles);
-
+        $user->syncPermissions($request->permisos);
         return redirect()->back()
-                ->withSuccess('User is updated successfully.');
+                ->with(['message'=>'Usuario Actualizado','icon'=>'success']);
     }
 
     /**
@@ -126,10 +113,11 @@ class UserController extends Controller
         // About if user is Super Admin or User ID belongs to Auth User
         if ($user->hasRole('Super Admin') || $user->id == auth()->user()->id)
         {
-            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSIONS');
+            abort(403, 'No puedes borrar la cuenta de un administrador o tu propia cuenta');
         }
 
         $user->syncRoles([]);
+        $user->syncPermissions([]);
         $user->delete();
         return redirect()->route('users.index')
                 ->withSuccess('User is deleted successfully.');

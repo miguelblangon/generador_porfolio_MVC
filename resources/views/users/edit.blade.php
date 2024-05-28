@@ -19,14 +19,18 @@
         @include('users.form.userInput')
     </x-adminlte-card>
 
+<form action="{{ route('users.update', $user->id) }}" method="post">
+    @method('patch')
+    @csrf
     <x-adminlte-card title="Roles" theme="primary" icon="fas fa-lg fa-fan" removable collapsible>
         @include('users.form.roles',[ 'name'=>'roles' ,'nombre'=>'Listado de Roles' ])
     </x-adminlte-card>
-
-
     <x-adminlte-card title="Permisos" theme="primary" icon="fas fa-lg fa-fan" removable collapsible>
         @include('users.form.permisos')
     </x-adminlte-card>
+    @include('componentes.btnEnviar',['mensaje'=>'Actualizar'])
+</form>
+
 
 
 

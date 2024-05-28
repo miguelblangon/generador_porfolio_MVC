@@ -24,11 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $model = AntiSpan::where('ip',request()->ip())->first();
-        if ($model) {
-            $model->delete();
-        }
-
         return view('home');
     }
 }

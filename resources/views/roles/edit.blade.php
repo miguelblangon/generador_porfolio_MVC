@@ -16,7 +16,7 @@
     </div>
     <form action="{{ route('roles.update',$role->id) }}" method="post">
         @csrf
-        @method('put')
+        @method('patch')
         <div class="row">
             @include('roles.input.input')
             @include('componentes.btnEnviar',[ 'mensaje'=> 'Actualizar'])
