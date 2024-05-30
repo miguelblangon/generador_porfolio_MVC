@@ -4,7 +4,7 @@
 @endif
 
 <x-adminlte-card title="Permisos" theme="primary" icon="fas fa-lg fa-fan" removable collapsible>
-    @include('componentes.switch',['coleccion'=> $permissions, 'valores'=>$rolePermissions, 'name'=>'permissions[]'] )
+    @include('componentes.switch',['coleccion'=> $permissions, 'valores'=>$rolePermissions??[], 'name'=>'permissions[]'] )
 </x-adminlte-card>
 
 @if ($errors->has('permissions'))

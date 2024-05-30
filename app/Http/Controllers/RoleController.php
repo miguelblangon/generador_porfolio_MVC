@@ -68,7 +68,7 @@ class RoleController extends Controller
     public function create(): View
     {
         return view('roles.create', [
-            'permissions' => Permission::get(['id','name'])->pluck('name','id')->toArray()
+            'permissions' => Permission::get(['id','name'])->pluck('name','name')->toArray()
         ]);
     }
 
@@ -78,10 +78,7 @@ class RoleController extends Controller
     public function store(StoreRoleRequest $request): RedirectResponse
     {
         $role = Role::create(['name' => $request->name]);
-
-        $permissions = Permission::whereIn('id', $request->permissions)->get(['name'])->toArray();
-
-        $role->syncPermissions($permissions);
+        $role->syncPermissions($request->permissions??[]);
         return redirect()->route('roles.edit', $role->id)
                 ->with(['message'=>'Rol Creado con exito','icon'=>'success']);
     }
@@ -124,7 +121,7 @@ class RoleController extends Controller
 
         $input = $request->only('name');
         $role->update($input);
-        $role->syncPermissions($request->permissions);
+        $role->syncPermissions($request->permissions??[]);
 
         return redirect()->back()
                 ->with(['message'=>'Rol Actualizado','icon'=>'success']);

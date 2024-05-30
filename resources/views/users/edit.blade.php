@@ -15,19 +15,29 @@
         @include('componentes.EnlaceParam',["ruta"=>'users.index','color'=>'primary','mensaje'=>'Volver' ])
     </div>
 
-    <x-adminlte-card title="Datos Personales" theme="primary" icon="fas fa-lg fa-fan" removable collapsible>
-        @include('users.form.userInput')
-    </x-adminlte-card>
+
 
 <form action="{{ route('users.update', $user->id) }}" method="post">
     @method('patch')
     @csrf
+    <x-adminlte-card title="Datos Personales" theme="primary" icon="fas fa-lg fa-fan" removable collapsible>
+        @include('users.form.userInput')
+    </x-adminlte-card>
     <x-adminlte-card title="Roles" theme="primary" icon="fas fa-lg fa-fan" removable collapsible>
         @include('users.form.roles',[ 'name'=>'roles' ,'nombre'=>'Listado de Roles' ])
     </x-adminlte-card>
     <x-adminlte-card title="Permisos" theme="primary" icon="fas fa-lg fa-fan" removable collapsible>
         @include('users.form.permisos')
     </x-adminlte-card>
+    @foreach ($usar as $nombre)
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="usar" value="{{ $nombre }}" required>
+            <label class="form-check-label" for="usar">
+            {{ $nombre }}
+            </label>
+        </div>
+    @endforeach
+
     @include('componentes.btnEnviar',['mensaje'=>'Actualizar'])
 </form>
 

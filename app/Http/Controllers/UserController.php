@@ -90,7 +90,8 @@ class UserController extends Controller
             'roles' => Role::pluck('name','name')->all(),
             'userRoles' => $user->roles->pluck('name','name')->toArray(),
             'permission'=>Permission::pluck('name','name')->toArray(),
-            'userPermission'=>$user->getAllPermissions()->pluck('name')->toArray()
+            'userPermission'=>$user->getAllPermissions()->pluck('name')->toArray(),
+            'usar'=>['Rol','Permisos']
         ]);
     }
 
@@ -99,8 +100,19 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        $user->syncRoles($request->roles);
-        $user->syncPermissions($request->permisos);
+        //dd($request->request);
+        $user->update(['name'=>$request->name]);
+
+
+        if ($request->usar=='Rol' ) {
+            $user->syncRoles($request->roles);
+             $permision = Role::where('name', $request->roles)->first();
+             $user->syncPermissions($permision->getAllPermissions()->pluck('name')->toArray());
+        }
+
+        if ($request->usar == 'Permisos' ) {
+            $user->syncPermissions($request->permisos??[]);
+        }
         return redirect()->back()
                 ->with(['message'=>'Usuario Actualizado','icon'=>'success']);
     }
