@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Porfolio</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -311,18 +311,21 @@ return [
         [
             'text' => 'Porfolio',
             'url' => 'porfolio',
+           // 'active' => ['*'],
             'icon' => 'fas fa-fw fa-user',
             'can' => 'view-menu-lateral-plantilla-usuario',
         ],
         [
             'text' => 'Introducción',
             'url' => 'introduccion',
+            //'active' => ['*'],
             'icon' => 'fas fa-fw fa-user',
             'can' => 'view-menu-lateral-introduccion-plantilla-usuario',
         ],
         [
             'text' => 'Info. Personal',
             'url' => 'about_me',
+           // 'active' => ['*'],
             'icon' => 'fas fa-fw fa-user',
             'can' => 'view-menu-lateral-about-plantilla-usuario',
         ],
@@ -330,12 +333,14 @@ return [
         [
             'text' => 'Usuario',
             'url' => 'users',
+            //'active' => ['*'],
             'icon' => 'fas fa-fw fa-user',
             'can' => 'view-menu-lateral-user',
         ],
         [
             'text' => 'Roles',
             'url' => 'roles',
+            //'active' => ['*'],
             'icon' => 'fas fa-fw fa-user',
             'can' => 'view-menu-lateral-roles',
         ],
@@ -347,7 +352,8 @@ return [
         ],
         [
             'text' => 'Plantilla',
-            'url' => 'plantilla',
+            'url' => 'plantillas',
+            'active' => ['plantillas','plantillas/create','plantaillas/*/update'],
             'icon' => 'fas fa-fw fa-user',
             'can' => 'view-menu-lateral-plantilla',
         ],
