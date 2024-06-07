@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessSendPasswordEmail;
 use App\Mail\AutenticationMessageEmail;
+use App\Models\AntiSpan;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -48,6 +50,11 @@ class CodeAuthPasswordController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            $model = AntiSpan::where('ip',request()->ip())->first();
+           // dd($model==true ? true:false );
+            if ($model) {
+                $model->delete();
+            }
 
             return redirect()->intended('home');
         }
@@ -62,7 +69,8 @@ class CodeAuthPasswordController extends Controller
 
 
     private function enviarEmail(string $email,int $numero ):void {
-        Mail::to($email)->send(new AutenticationMessageEmail($numero));
+         ProcessSendPasswordEmail::dispatchSync($numero,$email);
+
     }
     private function codigoAleatorio():int {
         //alimentamos el generador de aleatorios

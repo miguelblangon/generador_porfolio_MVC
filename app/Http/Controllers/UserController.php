@@ -5,12 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
-
+use Spatie\Permission\Models\Permission;
 class UserController extends Controller
 {
     /**
@@ -30,11 +29,14 @@ class UserController extends Controller
      */
     public function index()
     {
-
-
-        // return view('users.index', [
-        //     'users' => User::latest('id')->paginate(3)
-        // ]);
+        $model = User::orderBy('id','DESC')->get(['id','name','email']);
+        $array = [];
+        foreach ($model as  $value) {
+            $array[]= $value->row;
+        }
+        return view('users.index', [
+            'models' => $array
+        ]);
     }
 
     /**
@@ -77,17 +79,19 @@ class UserController extends Controller
      */
     public function edit(User $user): View
     {
-        // Check Only Super Admin can update his own Profile
+        // Check Only Super Admin can update his [own Profile
         if ($user->hasRole('Super Admin')){
             if($user->id != auth()->user()->id){
                 abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSIONS');
             }
         }
-
         return view('users.edit', [
             'user' => $user,
-            'roles' => Role::pluck('name')->all(),
-            'userRoles' => $user->roles->pluck('name')->all()
+            'roles' => Role::pluck('name','name')->all(),
+            'userRoles' => $user->roles->pluck('name','name')->toArray(),
+            'permission'=>Permission::pluck('name','name')->toArray(),
+            'userPermission'=>$user->getAllPermissions()->pluck('name')->toArray(),
+            'usar'=>['Rol','Permisos']
         ]);
     }
 
@@ -96,20 +100,21 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        $input = $request->all();
+        //dd($request->request);
+        $user->update(['name'=>$request->name]);
 
-        if(!empty($request->password)){
-            $input['password'] = Hash::make($request->password);
-        }else{
-            $input = $request->except('password');
+
+        if ($request->usar=='Rol' ) {
+            $user->syncRoles($request->roles);
+             $permision = Role::where('name', $request->roles)->first();
+             $user->syncPermissions($permision->getAllPermissions()->pluck('name')->toArray());
         }
 
-        $user->update($input);
-
-        $user->syncRoles($request->roles);
-
+        if ($request->usar == 'Permisos' ) {
+            $user->syncPermissions($request->permisos??[]);
+        }
         return redirect()->back()
-                ->withSuccess('User is updated successfully.');
+                ->with(['message'=>'Usuario Actualizado','icon'=>'success']);
     }
 
     /**
@@ -120,10 +125,11 @@ class UserController extends Controller
         // About if user is Super Admin or User ID belongs to Auth User
         if ($user->hasRole('Super Admin') || $user->id == auth()->user()->id)
         {
-            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSIONS');
+            abort(403, 'No puedes borrar la cuenta de un administrador o tu propia cuenta');
         }
 
         $user->syncRoles([]);
+        $user->syncPermissions([]);
         $user->delete();
         return redirect()->route('users.index')
                 ->withSuccess('User is deleted successfully.');

@@ -11,7 +11,9 @@ class PlantillaUsuarioController extends Controller
         $this->middleware('auth');
     }
     public function index(){
-
         return view('porfolio.index');
+    }
+    public function create(){
+        return view('porfolio.create');
     }
 }

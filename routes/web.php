@@ -22,9 +22,11 @@ Route::post('/code_autentication', [App\Http\Controllers\CodeAuthPasswordControl
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/porfolio', [App\Http\Controllers\PlantillaUsuarioController::class, 'index'])->name('porfolio');
 
 Route::resources([
     'roles' => App\Http\Controllers\RoleController::class,
     'users' => App\Http\Controllers\UserController::class,
+    'porfolio' => App\Http\Controllers\PlantillaUsuarioController::class,
+    'plantillas' => App\Http\Controllers\PlantillaController::class,
 ]);
+Route::get('/plantillas/{plantilla}/detalles/{detalle}', [App\Http\Controllers\PlantillaController::class, 'detallesPlantillas'])->name('plantillas.detalles');

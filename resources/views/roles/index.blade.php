@@ -14,9 +14,7 @@
 {{-- Minimal without header / body only --}}
 <x-adminlte-card theme="lightblue" theme-mode="outline">
     <div class="row">
-        <div class="col-12 text-right">
-            <a href="{{ route('roles.create') }}" class="btn btn-success btn-sm" role="button">Crear</a>
-        </div>
+        @include('componentes.EnlaceParam',["ruta"=>'roles.create','color'=>'success','mensaje'=>'Crear' ])
     </div>
     <div class="row pt-2">
         <div class="col-12">

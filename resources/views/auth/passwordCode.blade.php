@@ -11,7 +11,7 @@
     <div class="container mt-5">
         <div class="row d-flex justify-content-center">
             <div class="col-md-6">
-                <div class="card">
+                <div class="card mb-3">
                     <div class="card-body">
                       Se ha enviado un codigo de Autenticación al siguiente correo <b>{{ $email }}</b>, por favor introduzca el codigo para poder acceder.
                     </div>

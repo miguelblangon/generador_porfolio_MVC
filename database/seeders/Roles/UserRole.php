@@ -13,7 +13,7 @@ class UserRole{
             'about-plantilla-usuario',
             'introduccion-plantilla-usuario',
             'plantilla-usuario',
-            'user',
+            //'user',
         ];
         foreach ($models_permission as  $models) {
             foreach ($permisos->roles($models,$permisos_array) as  $string) {
