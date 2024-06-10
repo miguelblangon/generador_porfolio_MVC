@@ -3,7 +3,7 @@
 
 @section('subtitle', 'Porfolio')
 @section('content_header_title', 'Porfolio')
-@section('content_header_subtitle', 'Crear')
+@section('content_header_subtitle',$model->nombre )
 
 {{-- Content body: main page content --}}
 
@@ -16,11 +16,12 @@
     <div class="row">
         @include('componentes.EnlaceParam',["ruta"=>'porfolio.index','color'=>'primary','mensaje'=>'Volver' ])
     </div>
-    <form action="{{ route('porfolio.store') }}" method="post">
+    <form action="{{ route('porfolio.update',$model->id) }}" method="post">
         @csrf
+        @method('patch')
             @include('porfolio.input.input')
         <div class="row">
-            @include('componentes.btnEnviar',[ 'mensaje'=> 'Guardar'])
+            @include('componentes.btnEnviar',[ 'mensaje'=> 'Actualizar'])
         </div>
     </form>
 </x-adminlte-card>
@@ -36,4 +37,5 @@
 
 @push('js')
     {{-- <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script> --}}
+    @include('componentes.toast')
 @endpush
