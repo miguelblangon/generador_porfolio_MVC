@@ -26,7 +26,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resources([
     'roles' => App\Http\Controllers\RoleController::class,
     'users' => App\Http\Controllers\UserController::class,
-    'porfolio' => App\Http\Controllers\PlantillaUsuarioController::class,
     'plantillas' => App\Http\Controllers\PlantillaController::class,
+    'porfolio' => App\Http\Controllers\PlantillaUsuarioController::class,
+    'introduccion' => App\Http\Controllers\IntroduccionPlantillaUsuarioController::class,
+
 ]);
 Route::get('/plantillas/{plantilla}/detalles/{detalle}', [App\Http\Controllers\PlantillaController::class, 'detallesPlantillas'])->name('plantillas.detalles');
+

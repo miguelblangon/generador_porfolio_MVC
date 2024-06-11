@@ -7,10 +7,11 @@
 
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+  <section id="hero" style="background-image: url('http://porfolio_laravel_adminlte.test//usuarios/1/imagenProgramacion.jpg'); background-attachment: fixed; background-size: cover;"  class="d-flex flex-column justify-content-center align-items-center">
     <div class="hero-container" data-aos="fade-in">
-      <h1>Alex Smith</h1>
-      <p>I'm <span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer"></span></p>
+
+      <h1> {{ $introduccion->nombre??'Alex Smith'  }} </h1>
+      <p><span class="typed" data-typed-items=" {{ $introduccion->frase_introductoria??'Designer, Developer, Freelancer, Photographer' }}"></span></p>
     </div>
   </section><!-- End Hero -->
 

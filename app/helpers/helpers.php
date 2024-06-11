@@ -53,6 +53,21 @@ if (!function_exists('delTree')) {
 
 
 }
+if (!function_exists('proteccion')) {
+    function proteccion($id){
+        $user = Auth::user();
+        if ($id!= $user->id && $user->hasRole('User') ) {
+            abort(403,'PERMISOS INSUFICIENTES');
+        }
+    }
+
+
+}
+
+
+
+
+
 
 
 
