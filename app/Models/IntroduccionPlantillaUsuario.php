@@ -26,6 +26,10 @@ class IntroduccionPlantillaUsuario extends Model
     {
         return $this->belongsTo(PlantillaUsuario::class);
     }
+
+    public function getVerImagenAttribute(){
+        return  str_replace('public','storage',$this->url_foto);
+    }
     private function btnEdit(int $id):string {
 
         return '<a href="'.route("introduccion.edit",$id).'" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
@@ -35,7 +39,7 @@ class IntroduccionPlantillaUsuario extends Model
     }
     private function btnDetails(int $id):string {
 
-        return '<a href="'.route("introduccion.show",$id).'" target="_blank" class="btn btn-xs btn-default text-teal mx-1 shadow" title="Detalles">
+        return '<a href="'.route("porfolio.show",$id).'" target="_blank" class="btn btn-xs btn-default text-teal mx-1 shadow" title="Detalles">
                     <i class="fa fa-lg fa-fw fa-eye"></i>
                 </a>';
 
@@ -52,7 +56,7 @@ class IntroduccionPlantillaUsuario extends Model
     }
 
 protected function getRowAttribute($value){
-    return [$this->id,$this->plantillaUsuario->nombre,$this->nombre,$this->url_foto,$this->frase_introductoria ,'<nobr>'.$this->btnEdit($this->id).$this->btnDelete($this->id).$this->btnDetails($this->id).'</nobr>'];
+    return [$this->id,$this->plantillaUsuario->nombre,$this->nombre,$this->ver_imagen,$this->frase_introductoria ,'<nobr>'.$this->btnEdit($this->id).$this->btnDelete($this->id).$this->btnDetails($this->plantilla_usuario_id).'</nobr>'];
 }
 
 }

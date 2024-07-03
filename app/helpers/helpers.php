@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 
 if (!function_exists('generar_nombre')) {
     function generar_nombre($extension){
@@ -63,7 +63,18 @@ if (!function_exists('proteccion')) {
 
 
 }
+if (!function_exists('provincia')) {
+    function provincia(int $provincia){
+        return DB::table('provincias')->select('Provincia')->where('idProvincia',$provincia)->first()->Provincia;
 
+    }
+}
+if (!function_exists('municipio')) {
+    function municipio(int $municipio){
+        return DB::table('municipios')->select('Municipio')->where('idMunicipio',$municipio)->first()->Municipio;
+
+    }
+}
 
 
 

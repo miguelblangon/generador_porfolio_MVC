@@ -46,6 +46,7 @@ class IntroduccionPlantillaUsuarioController extends Controller
         ]);
     }
     public function create(){
+
         return view('introduccion.create',['coleccion'=>PlantillaUsuario::where('user_id',Auth::id())->pluck('nombre','id')->toArray()]);
     }
     public function store(IntroduccionPlantillaUsuarioRequest $request){
@@ -86,10 +87,6 @@ class IntroduccionPlantillaUsuarioController extends Controller
          ->with(['message'=>'Registro Actualizado','icon'=>'success']);
     }
 
-
-
-
-
     public function destroy(IntroduccionPlantillaUsuario $introduccion): RedirectResponse
     {
         proteccion($introduccion->plantillaUsuario->user_id);
@@ -101,14 +98,4 @@ class IntroduccionPlantillaUsuarioController extends Controller
         return redirect()->route('introduccion.index')
         ->with(['message'=>'Registro Eliminado','icon'=>'error']);
     }
-
-
-
-
-
-
-
-
-
-
 }

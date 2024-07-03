@@ -38,6 +38,10 @@ class PlantillaUsuario extends Model
     {
         return $this->hasOne(IntroduccionPlantillaUsuario::class);
     }
+    public function aboutPlantillaUsuario():HasOne
+    {
+        return $this->hasOne(AboutPlantillaUsuario::class);
+    }
 
 
 
