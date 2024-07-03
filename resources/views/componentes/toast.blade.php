@@ -1,22 +1,27 @@
 <script>
     $(document).ready(function() {
-        let success={!! session()->has('message') !!};
-            if (success) {
+        let success= @json(session()->has('message')) ;
+        if (success) {
                 const Toast = Swal.mixin({
                 toast: true,
-                position: 'center',
+                position: 'top-end',
+
                 iconColor: 'white',
                 customClass: {
                     popup: 'colored-toast',
                 },
                 showConfirmButton: false,
-                timer: 4000,
+                timer: 5000,
                 timerProgressBar: true,
-                })
+                });
                 Toast.fire({
                     icon: "{{ session()->get('icon') }}",
-                    title: "{{ session()->get('message') }}"
-                });
+                    title: "{{ session()->get('message') }}",
+                    color: 'red',
+                })
             }
-    })
-     </script>
+
+
+    });
+
+ </script>
