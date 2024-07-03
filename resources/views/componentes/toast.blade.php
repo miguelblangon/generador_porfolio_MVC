@@ -2,12 +2,17 @@
     $(document).ready(function() {
         let success={!! session()->has('message') !!};
             if (success) {
-                var Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 4000
-                });
+                const Toast = Swal.mixin({
+                toast: true,
+                position: 'center',
+                iconColor: 'white',
+                customClass: {
+                    popup: 'colored-toast',
+                },
+                showConfirmButton: false,
+                timer: 4000,
+                timerProgressBar: true,
+                })
                 Toast.fire({
                     icon: "{{ session()->get('icon') }}",
                     title: "{{ session()->get('message') }}"
