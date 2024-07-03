@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class PlantillaUsuario extends Model
@@ -41,6 +42,10 @@ class PlantillaUsuario extends Model
     public function aboutPlantillaUsuario():HasOne
     {
         return $this->hasOne(AboutPlantillaUsuario::class);
+    }
+    public function habilidades():HasMany
+    {
+        return $this->hasMany(Habilidad::class);
     }
 
 

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +31,7 @@ Route::resources([
     'porfolio' => App\Http\Controllers\PlantillaUsuarioController::class,
     'introduccion' => App\Http\Controllers\IntroduccionPlantillaUsuarioController::class,
     'about_me' => App\Http\Controllers\AboutPlantillaUsuarioController::class,
+    'habilidad' => App\Http\Controllers\HabilidadController::class,
 
 ]);
 Route::get('/plantillas/{plantilla}/detalles/{detalle}', [App\Http\Controllers\PlantillaController::class, 'detallesPlantillas'])->name('plantillas.detalles');

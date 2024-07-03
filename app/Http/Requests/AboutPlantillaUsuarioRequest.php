@@ -25,7 +25,7 @@ class AboutPlantillaUsuarioRequest extends FormRequest
             'plantilla_usuario_id'=>'required|unique:about_plantilla_usuarios,plantilla_usuario_id',
             'imagen'=>'required|image|max:1024|extensions:jpg,jpeg,png',
             'nombre_completo'=>'required|string|max:250',
-            'email' => 'required|string|email:rfc,dns|max:250|unique:about_plantilla_usuarios,email',
+            'email' => 'required|string|email:rfc,dns|max:250|unique:users,email',
             'provincial'=>'required|string',
             'poblacion'=>'required|string',
             'num_contacto'=>'required|string',

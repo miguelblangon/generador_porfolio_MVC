@@ -47,7 +47,8 @@ class PlantillaUsuarioController extends Controller
 
         return view('plantilla.plantillas_aplicacion.'.$porfolio->plantilla->nombre.'.index',[
             'introduccion'=>$porfolio->introduccionPlantillaUsuario,
-            'about'=>$porfolio->aboutPlantillaUsuario
+            'about'=>$porfolio->aboutPlantillaUsuario,
+            'habilidades'=>$porfolio->habilidades
         ]);
     }
     public function create(){

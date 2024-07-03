@@ -86,7 +86,7 @@ class AboutPlantillaUsuarioController extends Controller
             'plantilla_usuario_id'=>'required',
             'imagen'=>'nullable|image|max:1024|extensions:jpg,jpeg,png',
             'nombre_completo'=>'required|string|max:250',
-            'email' => 'required|string|email:rfc,dns|max:250',
+            'email' => 'required|string|email:rfc,dns|max:250|unique:users,email',
             'provincial'=>'required|string',
             'poblacion'=>'required|string',
             'num_contacto'=>'required|string',
@@ -107,11 +107,6 @@ class AboutPlantillaUsuarioController extends Controller
          return redirect()->route('about_me.edit',$about_me->id)
          ->with(['message'=>'Registro Actualizado','icon'=>'success']);
     }
-
-
-
-
-
     public function destroy(AboutPlantillaUsuario $about_me): RedirectResponse
     {
         proteccion($about_me->plantillaUsuario->user_id);

@@ -37,7 +37,7 @@
                 <ul>
                   <li><i class="bi bi-chevron-right"></i> <strong>{{ __('Nombre') }}:</strong> <span>{{  $about->nombre_completo??'Alex Smith' }}</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>{{ __('Cumpleaños') }}:</strong> <span>{{  $about->nacimiento??'1 May 1995' }}</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>{{ __('Provincia') }}:</strong> <span> {{ provincia($about->provincial)??'Honululu'  }} </span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>{{ __('Provincia') }}:</strong> <span> {{ isset($about)?  provincia($about->provincial):'Honululu'  }} </span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>{{ __('Contacto') }}:</strong> <span>{{ $about->num_contacto??'+123 456 7890'}}</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>{{ __('Movilidad Geografica') }}:</strong> <span>{{ $about->disponibilidad??'NO lo se'}}</span></li>
                 </ul>
@@ -45,7 +45,7 @@
             <div class="col-lg-6 pt-5">
                 <ul>
                   <li><i class="bi bi-chevron-right"></i> <strong>{{ __('Edad') }}:</strong> <span>{{ $about->edad??'30'}}</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>{{ __('Ciudad') }}:</strong> <span>{{ municipio($about->poblacion)??'No Disponible' }}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>{{ __('Ciudad') }}:</strong> <span>{{ isset($about)? municipio($about->poblacion):'No Disponible' }}</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>{{ __('Email') }}:</strong> <span>{{ $about->email??'asdasdasdd@asd.com'}}</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>{{ __('Incorporación') }}:</strong> <span>{{ $about->incorporacion??'Error 404' }}</span></li>
                 </ul>
@@ -70,59 +70,79 @@
           <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
-        <div class="row skills-content">
-
-          <div class="col-lg-6" data-aos="fade-up">
-
-            <div class="progress">
-              <span class="skill">HTML <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+        <div class="row @isset($habilidades)  'g-2' @endisset skills-content">
+        @if (isset($habilidades))
+            @foreach ($habilidades as $item)
+            <div class="col-lg-6">
+                <div class="progress">
+                  <span class="skill">{{ $item->nombre }} <i class="val">{{ $item->valor }}%</i></span>
+                  <div class="progress-bar-wrap">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ $item->valor }}" aria-valuemin="0" aria-valuemax="{{ $item->valor >100? $item->valor:'100' }}"></div>
+                  </div>
+                </div>
             </div>
+            @endforeach
+        @else
+        <div class="col-lg-6" data-aos="fade-up">
 
-            <div class="progress">
-              <span class="skill">CSS <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+          <div class="progress">
+            <span class="skill">HTML <i class="val">100%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-
-            <div class="progress">
-              <span class="skill">JavaScript <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
           </div>
 
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-
-            <div class="progress">
-              <span class="skill">PHP <i class="val">80%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+          <div class="progress">
+            <span class="skill">CSS <i class="val">90%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
+          </div>
 
-            <div class="progress">
-              <span class="skill">WordPress/CMS <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+          <div class="progress">
+            <span class="skill">JavaScript <i class="val">75%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-
-            <div class="progress">
-              <span class="skill">Photoshop <i class="val">55%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
           </div>
 
         </div>
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+
+          <div class="progress">
+            <span class="skill">PHP <i class="val">80%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="progress">
+            <span class="skill">WordPress/CMS <i class="val">90%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="progress">
+            <span class="skill">Photoshop <i class="val">55%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+        @endif
+
+
+
+
+
+
+
+
 
       </div>
     </section><!-- End Skills Section -->
