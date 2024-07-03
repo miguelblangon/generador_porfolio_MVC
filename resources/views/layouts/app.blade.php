@@ -50,6 +50,7 @@
 
     $(document).ready(function() {
         // Add your common script logic here...
+        $('.select2').select2();
     });
 
 </script>

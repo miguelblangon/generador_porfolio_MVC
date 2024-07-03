@@ -45,7 +45,10 @@ class PlantillaUsuarioController extends Controller
     }
     public function show(PlantillaUsuario $porfolio){
 
-        return view('plantilla.plantillas_aplicacion.'.$porfolio->plantilla->nombre.'.index' );
+        return view('plantilla.plantillas_aplicacion.'.$porfolio->plantilla->nombre.'.index',[
+            'introduccion'=>$porfolio->introduccionPlantillaUsuario,
+            'about'=>$porfolio->aboutPlantillaUsuario
+        ]);
     }
     public function create(){
 
@@ -59,14 +62,14 @@ class PlantillaUsuarioController extends Controller
         ->with(['message'=>'Registro Creado con exito','icon'=>'success']);
     }
     public function edit(PlantillaUsuario $porfolio ){
-        $this->proteccion($porfolio->user_id);
+       proteccion($porfolio->user_id);
         return view('porfolio.edit',[
                     'coleccion'=>Plantilla::get(['id','nombre'])->pluck('nombre','id')->toArray(),
                      'model'=>$porfolio
                     ]);
     }
     public function update(Request $request,PlantillaUsuario $porfolio ){
-        $this->proteccion($porfolio->user_id);
+       proteccion($porfolio->user_id);
         $validatedData = $request->validate([
             'nombre' => 'required|string|max:250',
             'url' => $porfolio->url!=$request->url ? 'required|string|max:250|unique:plantilla_usuarios,url': 'required|string|max:250',
@@ -83,17 +86,11 @@ class PlantillaUsuarioController extends Controller
 
     public function destroy(PlantillaUsuario $porfolio): RedirectResponse
     {
-        $this->proteccion($porfolio->user_id);
+       proteccion($porfolio->user_id);
 
         $porfolio->delete();
         return redirect()->route('porfolio.index')
         ->with(['message'=>'Registro Eliminado','icon'=>'error']);
-    }
-    public function proteccion($id){
-        $user = Auth::user();
-        if ($id!= $user->id && $user->hasRole('User') ) {
-            abort(403,'PERMISOS INSUFICIENTES');
-        }
     }
 
 

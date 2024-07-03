@@ -5,7 +5,7 @@
         "allowClear" => true,
     ];
 @endphp
-<x-adminlte-select2 id="" name="{{ $name }}" label="{{ $nombre }}"
+<x-adminlte-select2 id="{{ $name }}" name="{{ $name }}" label="{{ $nombre }}"
     label-class="text-danger" :config="$config">
     <x-slot name="prependSlot">
         <div class="input-group-text bg-gradient-red">

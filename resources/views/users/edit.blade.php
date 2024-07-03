@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('plugins.Select2', true)
 {{-- Customize layout sections --}}
 
 @section('subtitle', 'Usuario')
