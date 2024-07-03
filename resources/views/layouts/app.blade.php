@@ -59,6 +59,10 @@
 {{-- Add common CSS customizations --}}
 
 @push('css')
+
+<link rel="stylesheet" href="{{ asset('css/toastStyle.css') }}">
+
+
 <style type="text/css">
 
     {{-- You can add AdminLTE customizations here --}}
