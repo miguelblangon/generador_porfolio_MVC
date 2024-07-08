@@ -4,8 +4,8 @@
 @section('plugins.Summernote', true)
 {{-- Customize layout sections --}}
 
-@section('subtitle', 'Información Personal')
-@section('content_header_title', 'Información Personal')
+@section('subtitle', 'Estudio')
+@section('content_header_title', 'Estudio')
 @section('content_header_subtitle',$model->plantillaUsuario->nombre )
 
 {{-- Content body: main page content --}}

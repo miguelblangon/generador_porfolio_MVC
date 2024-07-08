@@ -25,7 +25,7 @@ return new class extends Migration
             $table->foreignId('plantilla_usuario_id')->constrained();
             $table->string('nombre')->nullable();
             $table->integer('year_inicio')->nullable();
-            $table->integer('year_fin')->nullable();
+            $table->string('year_fin')->nullable();
             $table->string('centro')->nullable();
             $table->text('contenido')->nullable();
             $table->timestamps();

@@ -2,8 +2,8 @@
     @include('componentes.select',['col'=>6,'label'=>'Plantilla','name'=>'plantilla_usuario_id','coleccion'=>$coleccion,'valores'=>isset($model)?[$model->plantilla_usuario_id]:[],'req'=>1  ])
 </div>
 <div class="row">
-    @include('componentes.text',['tipo'=>'nomber', 'col'=>6,'label'=>'Año Inicio','name'=>'year_inicio','place'=>'Inicio','value'=>isset($model)?$model->year_inicio:'','req'=>1  ])
-    @include('componentes.text',['tipo'=>'nomber','col'=>6,'label'=>'Año Fin','name'=>'year_fin','place'=>'Fin','value'=>isset($model)?$model->year_fin:'','req'=>1  ])
+    @include('componentes.text',['tipo'=>'number', 'col'=>6,'label'=>'Año Inicio','name'=>'year_inicio','place'=>'Inicio','value'=>isset($model)?$model->year_inicio:'','req'=>1  ])
+    @include('componentes.text',['tipo'=>'number','col'=>6,'label'=>'Año Fin','name'=>'year_fin','place'=>'Fin','value'=>isset($model)?$model->year_fin:''])
 </div>
 
 <div class="row">
@@ -35,7 +35,7 @@
     <div class="col-12">
         <x-adminlte-text-editor name="contenido" label="Contenido" label-class="text-info"
             igroup-size="sm" placeholder="Resumen de la titulación" :config="$config">
-            {{ isset($model)?$model->contenido:'' }}
+            {{ isset($model)?$model->contenido:old() }}
         </x-adminlte-text-editor>
     </div>
 

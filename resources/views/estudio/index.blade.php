@@ -4,7 +4,7 @@
 {{-- Customize layout sections --}}
 
 @section('subtitle', '')
-@section('content_header_title', 'Info.Personal')
+@section('content_header_title', 'Estudio')
 @section('content_header_subtitle', 'Index')
 
 {{-- Content body: main page content --}}

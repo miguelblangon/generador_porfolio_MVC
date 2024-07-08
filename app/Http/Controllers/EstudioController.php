@@ -66,6 +66,9 @@ class EstudioController extends Controller
     public function store(EstudioRequest $request)
     {
         $info= $request->all();
+        if ( is_null($request->year_fin)) {
+            $info['year_fin']='Actualmente';
+        }
         Estudio::create($info);
         return redirect()->route($this->path.'.index')
         ->with(['message'=>'Registro Creado con exito','icon'=>'success']);
@@ -89,6 +92,9 @@ class EstudioController extends Controller
     {
         proteccion($estudio->plantillaUsuario->user_id);
         $info=$request->all();
+        if ( is_null($request->year_fin)) {
+            $info['year_fin']='Actualmente';
+        }
         $estudio->update($info);
          return redirect()->route($this->path.'.edit',$estudio->id)
          ->with(['message'=>'Registro Actualizado','icon'=>'success']);

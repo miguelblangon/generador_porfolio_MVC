@@ -25,7 +25,7 @@ class EstudioRequest extends FormRequest
             'plantilla_usuario_id'=>'required',
             'nombre'=>'required|string|max:250',
             'year_inicio'=>'required|numeric',
-            'year_fin'=>'required|numeric',
+            'year_fin'=>'nullable|numeric',
             'centro'=>'required|string|max:250',
             'contenido'=>'required|string',
         ];
