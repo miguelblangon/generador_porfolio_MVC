@@ -47,6 +47,10 @@ class PlantillaUsuario extends Model
     {
         return $this->hasMany(Habilidad::class);
     }
+    public function estudios():HasMany
+    {
+        return $this->hasMany(Estudio::class);
+    }
 
 
 
