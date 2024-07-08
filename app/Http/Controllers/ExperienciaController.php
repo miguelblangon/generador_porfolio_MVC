@@ -3,21 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EstudioRequest;
-use App\Models\ExperienciaProfesional;
+use App\Http\Requests\ExperienciaRequest;
+use App\Models\Experiencia;
 use App\Models\PlantillaUsuario;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ExperienciaProfesionalController extends Controller
+class ExperienciaController extends Controller
 {
-    private $path='experiencia';
-    public function __construct()
+    private $path='experiencias';
+    protected $experiencia;
+
+    public function __construct(Experiencia $experiencia)
     {
         $this->middleware('auth');
         $this->middleware('permission:create-experiencia|edit-experiencia|delete-experiencia', ['only' => ['index','show']]);
         $this->middleware('permission:create-experiencia', ['only' => ['create','store']]);
         $this->middleware('permission:edit-experiencia', ['only' => ['edit','update']]);
         $this->middleware('permission:delete-experiencia', ['only' => ['destroy']]);
+        $this->experiencia = $experiencia;
+
     }
     public function parametrosCosulta(){
         return ['id','plantilla_usuario_id','nombre','year_inicio','year_fin','centro'];
@@ -31,7 +35,7 @@ class ExperienciaProfesionalController extends Controller
         $array = [];
 
         if ($user->hasRole('Super Admin')) {
-            $model = ExperienciaProfesional::orderBy('id','DESC')->get($this->parametrosCosulta());
+            $model = Experiencia::orderBy('id','DESC')->get($this->parametrosCosulta());
             foreach ($model as  $value) {
                 $array[]= $value->row;
             }
@@ -39,7 +43,7 @@ class ExperienciaProfesionalController extends Controller
 
         if ($user->hasRole('User')) {
             $plantilla = PlantillaUsuario::where('user_id',Auth::id());
-            $model = ExperienciaProfesional::whereBelongsTo($plantilla,'plantillaUsuario')->orderBy('id','DESC')->get($this->parametrosCosulta());
+            $model = Experiencia::whereBelongsTo($plantilla,'plantillaUsuario')->orderBy('id','DESC')->get($this->parametrosCosulta());
 
             foreach ($model as  $value) {
                 $array[]= $value->row;
@@ -63,10 +67,13 @@ class ExperienciaProfesionalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(EstudioRequest $request)
+    public function store(ExperienciaRequest $request)
     {
         $info= $request->all();
-        ExperienciaProfesional::create($info);
+         if ( is_null($request->year_fin)) {
+            $info['year_fin']='Actualmente';
+        }
+        Experiencia::create($info);
         return redirect()->route($this->path.'.index')
         ->with(['message'=>'Registro Creado con exito','icon'=>'success']);
     }
@@ -74,33 +81,39 @@ class ExperienciaProfesionalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ExperienciaProfesional $experiencia)
+    public function edit($experiencias)
     {
+        $experiencias= $this->experiencia->findOrFail($experiencias);
         return view($this->path.'.edit',[
             'coleccion'=>PlantillaUsuario::where('user_id',Auth::id())->pluck('nombre','id')->toArray(),
-            'model'=>$experiencia
+            'model'=>$experiencias
             ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(EstudioRequest $request, ExperienciaProfesional $experiencia)
+    public function update(ExperienciaRequest $request, $experiencias)
     {
-        proteccion($experiencia->plantillaUsuario->user_id);
+        $experiencias= $this->experiencia->findOrFail($experiencias);
+        proteccion($experiencias->plantillaUsuario->user_id);
         $info=$request->all();
-        $experiencia->update($info);
-         return redirect()->route($this->path.'.edit',$experiencia->id)
+        if ( is_null($request->year_fin)) {
+            $info['year_fin']='Actualmente';
+        }
+        $experiencias->update($info);
+         return redirect()->route($this->path.'.edit',$experiencias->id)
          ->with(['message'=>'Registro Actualizado','icon'=>'success']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ExperienciaProfesional $experiencia)
+    public function destroy($experiencias)
     {
-        proteccion($experiencia->plantillaUsuario->user_id);
-        $experiencia->delete();
+        $experiencias= $this->experiencia->findOrFail($experiencias);
+        proteccion($experiencias->plantillaUsuario->user_id);
+        $experiencias->delete();
         return redirect()->route($this->path.'.index')
         ->with(['message'=>'Registro Eliminado','icon'=>'error']);
     }

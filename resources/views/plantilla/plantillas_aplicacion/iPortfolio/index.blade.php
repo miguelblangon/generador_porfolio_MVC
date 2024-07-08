@@ -177,7 +177,18 @@
             @endif
           </div>
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Professional Experience</h3>
+            <h3 class="resume-title">Experiencia Profesional</h3>
+
+            @if (isset($experiencias))
+                @foreach ($experiencias as $item)
+                <div class="resume-item">
+                    <h4>{{ $item->nombre }}</h4>
+                    <h5>{{ $item->year_inicio }} - {{ $item->year_fin }}</h5>
+                    <p><em>{{ $item->centro }}</em></p>
+                    <p>{!! $item->contenido !!}</p>
+                </div>
+                @endforeach
+            @else
             <div class="resume-item">
               <h4>Senior graphic design specialist</h4>
               <h5>2019 - Present</h5>
@@ -200,6 +211,7 @@
                 <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
               </ul>
             </div>
+            @endif
           </div>
         </div>
 

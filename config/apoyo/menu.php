@@ -36,6 +36,18 @@ return [
             'icon' => 'fas fa-fw fa-user',
             'can' => 'view-menu-lateral-about-plantilla-usuario',
         ],
+        [
+            'text' => 'Exp. Profesional',
+            'url' => 'experiencias',
+            'active' => ['experiencias','experiencias/create','experiencias/*/edit'],
+            'icon' => 'fas fa-fw fa-user',
+            'can' => 'view-menu-lateral-about-plantilla-usuario',
+        ],
+
+
+
+
+        //Admins
         ['header' => 'Acceso restringido', 'can' => 'view-menu-lateral-menu'],
         [
             'text' => 'Usuario',

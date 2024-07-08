@@ -51,6 +51,10 @@ class PlantillaUsuario extends Model
     {
         return $this->hasMany(Estudio::class);
     }
+    public function experiencias():HasMany
+    {
+        return $this->hasMany(Experiencia::class);
+    }
 
 
 

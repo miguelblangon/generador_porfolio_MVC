@@ -49,7 +49,8 @@ class PlantillaUsuarioController extends Controller
             'introduccion'=>$porfolio->introduccionPlantillaUsuario,
             'about'=>$porfolio->aboutPlantillaUsuario,
             'habilidades'=>$porfolio->habilidades,
-            'estudios'=>$porfolio->estudios
+            'estudios'=>$porfolio->estudios,
+            'experiencias'=>$porfolio->experiencias
         ]);
     }
     public function create(){
