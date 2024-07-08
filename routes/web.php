@@ -25,13 +25,17 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resources([
+    //Admins
     'roles' => App\Http\Controllers\RoleController::class,
     'users' => App\Http\Controllers\UserController::class,
     'plantillas' => App\Http\Controllers\PlantillaController::class,
+    //Usuarios
     'porfolio' => App\Http\Controllers\PlantillaUsuarioController::class,
     'introduccion' => App\Http\Controllers\IntroduccionPlantillaUsuarioController::class,
     'about_me' => App\Http\Controllers\AboutPlantillaUsuarioController::class,
     'habilidad' => App\Http\Controllers\HabilidadController::class,
+    'estudio' => App\Http\Controllers\EstudioController::class,
+    'experiencias'=>App\Http\Controllers\ExperienciaController::class,
 
 ]);
 Route::get('/plantillas/{plantilla}/detalles/{detalle}', [App\Http\Controllers\PlantillaController::class, 'detallesPlantillas'])->name('plantillas.detalles');
