@@ -55,6 +55,14 @@ class PlantillaUsuario extends Model
     {
         return $this->hasMany(Experiencia::class);
     }
+    public function cursos():HasMany
+    {
+        return $this->hasMany(Curso::class);
+    }
+    public function servicios():HasMany
+    {
+        return $this->hasMany(Servicio::class);
+    }
 
 
 

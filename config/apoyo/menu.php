@@ -43,6 +43,20 @@ return [
             'icon' => 'fas fa-fw fa-user',
             'can' => 'view-menu-lateral-about-plantilla-usuario',
         ],
+        [
+            'text' => 'Cursos',
+            'url' => 'cursos',
+            'active' => ['cursos','cursos/create','cursos/*/edit'],
+            'icon' => 'fas fa-fw fa-user',
+            'can' => 'view-menu-lateral-about-plantilla-usuario',
+        ],
+        [
+            'text' => 'Servicios',
+            'url' => 'servicios',
+            'active' => ['servicios','servicios/create','servicios/*/edit'],
+            'icon' => 'fas fa-fw fa-user',
+            'can' => 'view-menu-lateral-about-plantilla-usuario',
+        ],
 
 
 

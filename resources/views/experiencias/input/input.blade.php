@@ -17,7 +17,7 @@
    {{-- With placeholder, sm size, label and some configuration --}}
 @php
     $config = [
-        "height" => "100",
+        "height" => "300px",
         "toolbar" => [
             // [groupName, [list of button]]
             ['style', ['bold', 'italic', 'underline', 'clear']],

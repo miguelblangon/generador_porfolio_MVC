@@ -14,10 +14,10 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Portfoio Details</h2>
+          <h2>Detalles del curso</h2>
           <ol>
-            <li><a href="{{ route('plantillas.show',['plantilla'=>13]) }}">Home</a></li>
-            <li>Portfoio Details</li>
+            <li><a href="{{ route('porfolio.show',['porfolio'=>$curso->plantilla_usuario_id]) }}">Profolio</a></li>
+            <li>{{ Str::limit($curso->nombre, 30, '...')}} </li>
           </ol>
         </div>
 
@@ -31,41 +31,18 @@
         <div class="row gy-4">
 
           <div class="col-lg-8">
-            <div class="portfolio-details-slider swiper">
-              <div class="swiper-wrapper align-items-center">
-
-                <div class="swiper-slide">
-                  <img src="{{ asset('storage/iPortfolio/assets/img/portfolio/portfolio-details-1.jpg') }}" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="{{ asset('storage/iPortfolio/assets/img/portfolio/portfolio-details-2.jpg') }}" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="{{ asset('storage/iPortfolio/assets/img/portfolio/portfolio-details-3.jpg') }}" alt="">
-                </div>
-
-              </div>
-              <div class="swiper-pagination"></div>
-            </div>
+            @include('componentes.card',[ 'ancho'=>'80%','titulo'=>$curso->nombre,'descripcion'=>$curso->descripcion ,'mostrar'=>true, 'tit_limi'=>2000 ])
           </div>
 
           <div class="col-lg-4">
             <div class="portfolio-info">
-              <h3>Project information</h3>
+              <h3>Información del curso</h3>
               <ul>
-                <li><strong>Category</strong>: Web design</li>
-                <li><strong>Client</strong>: ASU Company</li>
-                <li><strong>Project date</strong>: 01 March, 2020</li>
-                <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+                <li><strong>Categoría</strong>: {{ $curso->categoria }}</li>
+                <li><strong>Tutor</strong>: {{ $curso->tutor }}</li>
+                <li><strong>Fecha de finalización</strong>: {{ $curso->year_fin }}</li>
+                <li><strong>Url del curso</strong>: <a href="{{ $curso->url  }}" target="_blank" rel="noopener noreferrer">Enlace</a></li>
               </ul>
-            </div>
-            <div class="portfolio-description">
-              <h2>This is an example of portfolio detail</h2>
-              <p>
-                Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.
-              </p>
             </div>
           </div>
 

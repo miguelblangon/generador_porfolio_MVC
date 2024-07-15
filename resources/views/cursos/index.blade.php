@@ -4,7 +4,7 @@
 {{-- Customize layout sections --}}
 
 @section('subtitle', '')
-@section('content_header_title', 'Experiencia')
+@section('content_header_title', 'Cursos')
 @section('content_header_subtitle', 'Index')
 
 {{-- Content body: main page content --}}
@@ -14,7 +14,7 @@
 {{-- Minimal without header / body only --}}
 <x-adminlte-card theme="lightblue" theme-mode="outline">
     <div class="row">
-        @include('componentes.EnlaceParam',["ruta"=>'experiencias.create','color'=>'success','mensaje'=>'Crear' ])
+        @include('componentes.EnlaceParam',["ruta"=>'cursos.create','color'=>'success','mensaje'=>'Crear' ])
     </div>
     <div class="row pt-2">
         <div class="col-12">
@@ -24,9 +24,9 @@
                 ['label' => 'ID', 'no-export' => true, 'width' => 5],
                 ['label' => 'PORFOLIO', 'classes'=>'text-center' ],
                 ['label' => 'NOMBRE', 'classes'=>'text-center' ],
-                ['label' => 'INICIO', 'classes'=>'text-center' ],
+                ['label' => 'TUTOR', 'classes'=>'text-center' ],
                 ['label' => 'FIN', 'classes'=>'text-center' ],
-                ['label' => 'EMPRESA', 'classes'=>'text-center' ],
+                ['label' => 'CATEGORIA', 'classes'=>'text-center' ],
                 ['label' => 'ACCIONES', 'no-export' => true, 'width' => 5], ];
                 $config = ['data' => $models];
             @endphp

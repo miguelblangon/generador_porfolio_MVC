@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Curso;
 use App\Models\Plantilla;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -37,8 +38,11 @@ class PlantillaController extends Controller
 
         return view('plantilla.plantillas_aplicacion.'.$plantilla->nombre.'.index' );
     }
-    public function detallesPlantillas(Plantilla $plantilla,$detalle){
-        return view('plantilla.plantillas_aplicacion.'.$plantilla->nombre.'.detalles' );
+    public function detallesPlantillas(Plantilla $plantilla,Curso $detalle){
+        return view('plantilla.plantillas_aplicacion.'.$plantilla->nombre.'.detalles',[
+            'curso'=>$detalle,
+            'about'=>$detalle->plantillaUsuario->aboutPlantillaUsuario
+        ]);
     }
     public function create(){
         return view('plantilla.create');
