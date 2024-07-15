@@ -44,13 +44,20 @@ class PlantillaUsuarioController extends Controller
         ]);
     }
     public function show(PlantillaUsuario $porfolio){
+        $cursos = $porfolio->cursos;
+        $categorias = $cursos->map(function ($array) {return collect($array)->only(['categoria'])->unique()->all();});
+        $categorias = array_map("unserialize", array_unique(array_map("serialize", $categorias->toArray())));
 
         return view('plantilla.plantillas_aplicacion.'.$porfolio->plantilla->nombre.'.index',[
             'introduccion'=>$porfolio->introduccionPlantillaUsuario,
             'about'=>$porfolio->aboutPlantillaUsuario,
             'habilidades'=>$porfolio->habilidades,
             'estudios'=>$porfolio->estudios,
-            'experiencias'=>$porfolio->experiencias
+            'experiencias'=>$porfolio->experiencias,
+            'cursos'=>$cursos,
+            'categorias'=>$categorias,
+            'servicios'=>$porfolio->servicios,
+
         ]);
     }
     public function create(){

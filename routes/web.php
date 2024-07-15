@@ -36,6 +36,8 @@ Route::resources([
     'habilidad' => App\Http\Controllers\HabilidadController::class,
     'estudio' => App\Http\Controllers\EstudioController::class,
     'experiencias'=>App\Http\Controllers\ExperienciaController::class,
+    'cursos'=>App\Http\Controllers\CursoController::class,
+    'servicios'=>App\Http\Controllers\ServicioController::class,
 
 ]);
 Route::get('/plantillas/{plantilla}/detalles/{detalle}', [App\Http\Controllers\PlantillaController::class, 'detallesPlantillas'])->name('plantillas.detalles');
