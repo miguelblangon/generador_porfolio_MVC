@@ -29,6 +29,7 @@ Route::resources([
     'roles' => App\Http\Controllers\RoleController::class,
     'users' => App\Http\Controllers\UserController::class,
     'plantillas' => App\Http\Controllers\PlantillaController::class,
+    'secciones' => App\Http\Controllers\SeccionController::class,
     //Usuarios
     'porfolio' => App\Http\Controllers\PlantillaUsuarioController::class,
     'introduccion' => App\Http\Controllers\IntroduccionPlantillaUsuarioController::class,
