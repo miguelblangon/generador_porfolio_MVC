@@ -16,19 +16,31 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         $permission= new Permiso([
-        'about-plantilla-usuario',
-        'introduccion-plantilla-usuario',
-        'menu-lateral',
-        'plantilla',
-        'plantilla-usuario',
+        'about-plantilla-usuario',//OK
+        'curso',//OK
+        'introduccion-plantilla-usuario', //OK
+        'estudios',//OK
+        'experiencia',//OK
+        'habilidad',//OK
+        'plantilla',//OK
+        'plantilla-usuario',//OK
+        'role',//OK
+        'seccion',//OK
+        'servicio',//OK
         'user',
         ],[
-            'menu-lateral-user',
-            'menu-lateral-menu',
-            'menu-lateral-about-plantilla-usuario',
-            'menu-lateral-introduccion-plantilla-usuario',
-            'menu-lateral-plantilla',
-            'menu-lateral-plantilla-usuario',
+            'menu-lateral-user',//OK
+            'menu-lateral-about-plantilla-usuario',//OK
+            'menu-lateral-introduccion-plantilla-usuario',//OK
+            'menu-lateral-plantilla',//OK
+            'menu-lateral-plantilla-usuario',//OK
+            'menu-lateral-habilidad-plantilla-usuario',//OK
+            'menu-lateral-estudio-plantilla-usuario',//OK
+            'menu-lateral-experiencias-plantilla-usuario',//OK
+            'menu-lateral-cursos-plantilla-usuario',//OK
+            'menu-lateral-servicios-plantilla-usuario',//OK
+            'menu-lateral-roles',//OK
+            'menu-lateral-secciones',//OK
         ]);
 
          // Looping and Inserting Array's Permissions into Permission Table

@@ -226,17 +226,18 @@
           <h2>Cursos</h2>
           <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
-
-        <div class="row" data-aos="fade-up">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              @foreach ($categorias as $item)
-                <li data-filter=".filter-{{ $item['categoria'] }}">{{ $item['categoria'] }}</li>
-              @endforeach
-            </ul>
-          </div>
-        </div>
+        @isset($categorias)
+            <div class="row" data-aos="fade-up">
+            <div class="col-lg-12 d-flex justify-content-center">
+                <ul id="portfolio-flters">
+                <li data-filter="*" class="filter-active">All</li>
+                @foreach ($categorias as $item)
+                    <li data-filter=".filter-{{ $item['categoria'] }}">{{ $item['categoria'] }}</li>
+                @endforeach
+                </ul>
+            </div>
+            </div>
+        @endisset
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
             @if (isset($cursos))
@@ -267,7 +268,7 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Services</h2>
+          <h2>Servicios</h2>
           <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 

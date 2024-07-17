@@ -25,10 +25,10 @@
         @include('users.form.userInput')
     </x-adminlte-card>
     <x-adminlte-card title="Roles" theme="primary" icon="fas fa-lg fa-fan" removable collapsible>
-        @include('users.form.roles',[ 'name'=>'roles' ,'nombre'=>'Listado de Roles' ])
+        @include('componentes.select',['col'=>12, 'name'=>'roles' ,'label'=>'Listado de Roles','coleccion'=>$roles, 'valores'=>$userRoles,'req'=>1 ])
     </x-adminlte-card>
     <x-adminlte-card title="Permisos" theme="primary" icon="fas fa-lg fa-fan" removable collapsible>
-        @include('users.form.permisos')
+        @include('users.form.permisos',['permission'=>$permission,'userPermission'=>$userPermission ] )
     </x-adminlte-card>
     @foreach ($usar as $nombre)
         <div class="form-check">

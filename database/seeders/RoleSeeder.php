@@ -21,8 +21,5 @@ class RoleSeeder extends Seeder
         $user = Role::create(['name' => 'User']);
         $permission_user= new UserRole();
         $user->givePermissionTo($permission_user->permission());
-
-        //$permissions = Permission::pluck('id', 'id')->all();
-        //$user->syncPermissions($permissions);
     }
 }
