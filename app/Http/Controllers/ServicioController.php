@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CursoRequest;
+
 use App\Http\Requests\ServicioRequest;
 use App\Models\PlantillaUsuario;
 use App\Models\Servicio;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ServicioController extends Controller
