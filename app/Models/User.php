@@ -53,13 +53,6 @@ class User extends Authenticatable
                 </a>';
 
     }
-    private function btnDetails(int $id):string {
-
-        return '<a href="'.route("users.show",$id).'" class="btn btn-xs btn-default text-teal mx-1 shadow" title="Detalles">
-                    <i class="fa fa-lg fa-fw fa-eye"></i>
-                </a>';
-
-    }
     private function btnDelete(int $id):string {
 
         return '
@@ -74,7 +67,7 @@ class User extends Authenticatable
     }
 
 protected function getRowAttribute($value){
-    return [$this->id,$this->name,$this->email,'<nobr>'.$this->btnEdit($this->id).$this->btnDelete($this->id).$this->btnDetails($this->id).'</nobr>'];
+    return [$this->id,$this->name,$this->email,'<nobr>'.$this->btnEdit($this->id).$this->btnDelete($this->id).'</nobr>'];
 }
 
 
