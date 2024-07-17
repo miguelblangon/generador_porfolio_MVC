@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SeccionRequest;
 use App\Models\Seccion;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
 class SeccionController extends Controller
 {
     private $path='secciones';
