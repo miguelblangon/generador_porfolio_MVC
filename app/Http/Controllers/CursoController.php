@@ -16,10 +16,10 @@ class CursoController extends Controller
     public function __construct(Curso $curso)
     {
         $this->middleware('auth');
-        $this->middleware('permission:create-experiencia|edit-experiencia|delete-experiencia', ['only' => ['index','show']]);
-        $this->middleware('permission:create-experiencia', ['only' => ['create','store']]);
-        $this->middleware('permission:edit-experiencia', ['only' => ['edit','update']]);
-        $this->middleware('permission:delete-experiencia', ['only' => ['destroy']]);
+        $this->middleware('permission:create-curso|edit-curso|delete-curso', ['only' => ['index','show']]);
+        $this->middleware('permission:create-curso', ['only' => ['create','store']]);
+        $this->middleware('permission:edit-curso', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete-curso', ['only' => ['destroy']]);
         $this->model = $curso;
 
     }
