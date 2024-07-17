@@ -23,7 +23,6 @@ return new class extends Migration
             $table->date('nacimiento')->nullable();
             $table->boolean('dip_viajar')->nullable();
             $table->string('incorporacion')->nullable();
-            $table->text('texto1')->nullable();
             $table->text('texto2')->nullable();
             $table->timestamps();
         });
