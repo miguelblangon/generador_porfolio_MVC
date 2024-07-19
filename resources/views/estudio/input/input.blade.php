@@ -35,7 +35,7 @@
     <div class="col-12">
         <x-adminlte-text-editor name="contenido" label="Contenido" label-class="text-info"
             igroup-size="sm" placeholder="Resumen de la titulación" :config="$config">
-            {{ isset($model)?$model->contenido:old() }}
+            {{ isset($model)?$model->contenido:old('contenido') }}
         </x-adminlte-text-editor>
     </div>
 
