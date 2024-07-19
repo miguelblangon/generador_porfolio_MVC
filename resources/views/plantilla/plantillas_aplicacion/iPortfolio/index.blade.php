@@ -22,7 +22,15 @@
 
         <div class="section-title">
           <h2>{{ __('Información Personal') }}</h2>
-          <p> {{ isset($about)?$about->texto1:'Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.' }}</p>
+            @if (isset($secciones))
+                @foreach ($secciones as $item)
+                    @if ($item->seccion =='about')
+                        <p> {!! $item->texto !!}</p>
+                    @endif
+                @endforeach
+            @else
+             <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            @endif
         </div>
 
         <div class="row">
@@ -67,7 +75,15 @@
 
         <div class="section-title">
           <h2>{{ __('Habilidades') }}</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        @if (isset($secciones))
+                @foreach ($secciones as $item)
+                    @if ($item->seccion =='habilidad')
+                        <p> {!! $item->texto !!}</p>
+                    @endif
+                @endforeach
+            @else
+             <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            @endif
         </div>
 
         <div class="row @isset($habilidades)  'g-2' @endisset skills-content">
@@ -145,7 +161,15 @@
 
         <div class="section-title">
           <h2>Resumén</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+         @if (isset($secciones))
+                @foreach ($secciones as $item)
+                    @if ($item->seccion =='resumen')
+                        <p> {!! $item->texto !!}</p>
+                    @endif
+                @endforeach
+            @else
+             <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            @endif
         </div>
 
         <div class="row">
@@ -224,7 +248,15 @@
 
         <div class="section-title">
           <h2>Cursos</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+         @if (isset($secciones))
+                @foreach ($secciones as $item)
+                    @if ($item->seccion =='curso')
+                        <p> {!! $item->texto !!}</p>
+                    @endif
+                @endforeach
+            @else
+             <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            @endif
         </div>
         @isset($categorias)
             <div class="row" data-aos="fade-up">
@@ -269,7 +301,15 @@
 
         <div class="section-title">
           <h2>Servicios</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        @if (isset($secciones))
+                @foreach ($secciones as $item)
+                    @if ($item->seccion =='servicio')
+                        <p> {!! $item->texto !!}</p>
+                    @endif
+                @endforeach
+            @else
+             <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            @endif
         </div>
 
         <div class="row">
@@ -411,7 +451,15 @@
 
         <div class="section-title">
           <h2>Contacto</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+         @if (isset($secciones))
+                @foreach ($secciones as $item)
+                    @if ($item->seccion =='contacto')
+                        <p> {!! $item->texto !!}</p>
+                    @endif
+                @endforeach
+            @else
+             <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            @endif
         </div>
 
         <div class="row" data-aos="fade-in">
