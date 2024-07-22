@@ -23,7 +23,8 @@ class HabilidadController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
+        try {
+            $user = Auth::user();
         $array = [];
 
         if ($user->hasRole('Super Admin')) {
@@ -34,7 +35,7 @@ class HabilidadController extends Controller
         }
 
         if ($user->hasRole('User')) {
-            $plantilla = PlantillaUsuario::where('user_id',Auth::id());
+            $plantilla = PlantillaUsuario::where('user_id',Auth::id())->get();
             $model = Habilidad::whereBelongsTo($plantilla,'plantillaUsuario')->orderBy('id','DESC')->get(['id','plantilla_usuario_id','nombre','valor']);
 
             foreach ($model as  $value) {
@@ -46,6 +47,12 @@ class HabilidadController extends Controller
         return view('habilidad.index', [
             'models' => $array
         ]);
+        } catch (\Throwable $th) {
+            return view('habilidad.index', [
+                'models' => $array
+            ]);
+        }
+
     }
 
     /**

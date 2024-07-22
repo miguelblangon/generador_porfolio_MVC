@@ -24,8 +24,8 @@
                         </div>
                 </form>
             </div>
-            <p>Al 'Acceder' aceptas la política de uso</p>
-            <a type="button" data-bs-toggle="modal" data-bs-target="#politica">
+            <p>Al hacer click en el boton 'Acceder' aceptas la política de uso</p>
+            <a type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#politica">
                 Política de Uso
             </a>
         </div>

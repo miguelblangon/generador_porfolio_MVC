@@ -31,7 +31,8 @@ class CursoController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
+        try {
+            $user = Auth::user();
         $array = [];
 
         if ($user->hasRole('Super Admin')) {
@@ -42,7 +43,7 @@ class CursoController extends Controller
         }
 
         if ($user->hasRole('User')) {
-            $plantilla = PlantillaUsuario::where('user_id',Auth::id());
+            $plantilla = PlantillaUsuario::where('user_id',Auth::id())->get();
             $model = Curso::whereBelongsTo($plantilla,'plantillaUsuario')->orderBy('id','DESC')->get($this->parametrosCosulta());
 
             foreach ($model as  $value) {
@@ -52,6 +53,12 @@ class CursoController extends Controller
         return view($this->path.'.index', [
             'models' => $array
         ]);
+        } catch (\Throwable $th) {
+            return view($this->path.'.index', [
+                'models' => $array
+            ]);
+        }
+
     }
 
     /**

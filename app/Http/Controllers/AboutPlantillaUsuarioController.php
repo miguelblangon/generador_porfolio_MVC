@@ -31,6 +31,7 @@ class AboutPlantillaUsuarioController extends Controller
         $this->middleware('permission:delete-about-plantilla-usuario', ['only' => ['destroy']]);
     }
     public function index(){
+    try {
         $user = Auth::user();
         $array = [];
 
@@ -42,18 +43,23 @@ class AboutPlantillaUsuarioController extends Controller
         }
 
         if ($user->hasRole('User')) {
-            $plantilla = PlantillaUsuario::where('user_id',Auth::id());
+            $plantilla = PlantillaUsuario::where('user_id',Auth::id())->get();
             $model = AboutPlantillaUsuario::whereBelongsTo($plantilla,'plantillaUsuario')->orderBy('id','DESC')->get(['id','plantilla_usuario_id','url_foto','nombre_completo','email']);
 
             foreach ($model as  $value) {
                 $array[]= $value->row;
             }
         }
-
-
         return view('about.index', [
             'models' => $array
         ]);
+    } catch (\Throwable $th) {
+        return view('about.index', [
+            'models' => $array
+        ]);
+    }
+
+
     }
     public function create(){
 
