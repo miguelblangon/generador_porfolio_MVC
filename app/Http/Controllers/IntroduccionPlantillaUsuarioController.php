@@ -21,7 +21,7 @@ class IntroduccionPlantillaUsuarioController extends Controller
         $this->middleware('permission:delete-introduccion-plantilla-usuario', ['only' => ['destroy']]);
     }
     public function index(){
-      //  try {
+        try {
             $user = Auth::user();
             $array = [];
 
@@ -34,7 +34,8 @@ class IntroduccionPlantillaUsuarioController extends Controller
 
             if ($user->hasRole('User')) {
                 $plantilla = PlantillaUsuario::where('user_id',Auth::id())->get();
-                $model = IntroduccionPlantillaUsuario::whereBelongsTo($plantilla,'plantillaUsuario')->orderBy('id','DESC')->get(['id','plantilla_usuario_id','nombre' ,'url_foto','frase_introductoria']);
+
+                $model = IntroduccionPlantillaUsuario::whereBelongsTo($plantilla,'plantillaUsuario') ->orderBy('id','DESC')->get(['id','plantilla_usuario_id','nombre' ,'url_foto','frase_introductoria']);
                 foreach ($model as  $value) {
                     $array[]= $value->row;
                 }
@@ -45,12 +46,11 @@ class IntroduccionPlantillaUsuarioController extends Controller
                 'models' => $array
             ]);
 
-       /* } catch (\Throwable $th) {
+        } catch (\Throwable $th) {
             return view('introduccion.index', [
                 'models' => []
             ]);
         }
-            */
 
     }
     public function create(){
