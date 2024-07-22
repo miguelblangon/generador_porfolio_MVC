@@ -90,9 +90,14 @@ class PlantillaUsuario extends Model
         </button>
         </form>';
     }
+    private function url(string $code):string {
+
+        return '<a href="'.route("visualizar.porfolio",$code).'"target="_blank" class="mx-1" title="Url">'.$code.'</a>';
+
+    }
 
 protected function getRowAttribute($value){
-    return [$this->id,$this->nombre,$this->url,$this->user->email ,'<nobr>'.$this->btnEdit($this->id).$this->btnDelete($this->id).$this->btnDetails($this->id).'</nobr>'];
+    return [$this->id,$this->nombre,  $this->url($this->url),$this->user->email ,'<nobr>'.$this->btnEdit($this->id).$this->btnDelete($this->id).$this->btnDetails($this->id).'</nobr>'];
 }
 
 }

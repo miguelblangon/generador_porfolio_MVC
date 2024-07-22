@@ -33,6 +33,7 @@ class UserRole{
             'menu-lateral-experiencias-plantilla-usuario',//OK
             'menu-lateral-cursos-plantilla-usuario',//OK
             'menu-lateral-servicios-plantilla-usuario',//OK
+            'plantilla',//OK
         ];
         foreach ($menu_permission as  $models) {
             foreach ($permisos->roles($models,['view']) as  $string) {
@@ -40,7 +41,5 @@ class UserRole{
             }
         }
         return $permission;
-
-
     }
 }

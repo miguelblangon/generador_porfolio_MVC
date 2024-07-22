@@ -21,7 +21,7 @@ class PlantillaController extends Controller
     }
 
     public function index(){
-        $model = Plantilla::orderBy('id','DESC')->get(['id', 'nombre','ruta_plantilla','ruta_imagen']);
+        $model = Plantilla::orderBy('id','DESC')->get(['id', 'nombre','ruta_plantilla']);
         $array = [];
         foreach ($model as  $value) {
             $array[]= $value->row;
@@ -48,13 +48,10 @@ class PlantillaController extends Controller
         extraer_zip($archivo['ruta'],'resources/views/plantilla/plantillas_aplicacion');
         //Borramos carpeta comprimida
         File::delete(storage_path('app/'.$archivo['ruta']));
-        //Imagen
-        $imagen = subida_ficheros($request->file('imagen'),'public',generar_nombre($request->file('imagen')->getClientOriginalExtension()));
         // Genero un registro en la bd con la ruta de la plantilla y el nombre de la plantilla
         Plantilla::create([
             'nombre'=> $request->name,
-            'ruta_plantilla'=>base_path('resources/views/plantilla/plantillas_aplicacion').'/'.$archivo['nombre'],
-            'ruta_imagen'=>$imagen['nombre_completo'],
+            'ruta_plantilla'=>base_path('resources/views/plantilla/plantillas_aplicacion').'/'.$archivo['nombre']
         ]);
 
         //Creo un directorio en la carpeta public con el nombre de la carpeta
@@ -65,7 +62,6 @@ class PlantillaController extends Controller
         return redirect()->route('plantillas.index')
         ->with(['message'=>'Registro Creado con exito','icon'=>'success']);
     }
-    public function update(){}
     public function destroy(Plantilla $plantilla){
         File::delete(storage_path('app/public/'.$plantilla->ruta_imagen));
         $nombreDirectorio= explode('/',$plantilla->ruta_plantilla);

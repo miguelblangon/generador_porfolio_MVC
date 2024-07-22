@@ -11,8 +11,4 @@
         <label for="formFile" class="form-label">Archivos</label>
         <input name="files" class="form-control" type="file" id="formFile">
     </div>
-    <div class="col">
-        <label for="formFile" class="form-label">Imagen</label>
-        <input name="imagen" class="form-control" type="file" id="formFile">
-    </div>
 </div>

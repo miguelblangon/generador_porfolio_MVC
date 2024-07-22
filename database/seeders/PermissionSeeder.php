@@ -29,18 +29,18 @@ class PermissionSeeder extends Seeder
         'servicio',//OK
         'user',
         ],[
-            'menu-lateral-user',//OK
-            'menu-lateral-about-plantilla-usuario',//OK
-            'menu-lateral-introduccion-plantilla-usuario',//OK
-            'menu-lateral-plantilla',//OK
-            'menu-lateral-plantilla-usuario',//OK
-            'menu-lateral-habilidad-plantilla-usuario',//OK
-            'menu-lateral-estudio-plantilla-usuario',//OK
-            'menu-lateral-experiencias-plantilla-usuario',//OK
-            'menu-lateral-cursos-plantilla-usuario',//OK
-            'menu-lateral-servicios-plantilla-usuario',//OK
-            'menu-lateral-roles',//OK
-            'menu-lateral-secciones',//OK
+            'view-menu-lateral-user',//OK
+            'view-menu-lateral-about-plantilla-usuario',//OK
+            'view-menu-lateral-introduccion-plantilla-usuario',//OK
+            'view-menu-lateral-plantilla',//OK
+            'view-menu-lateral-plantilla-usuario',//OK
+            'view-menu-lateral-habilidad-plantilla-usuario',//OK
+            'view-menu-lateral-estudio-plantilla-usuario',//OK
+            'view-menu-lateral-experiencias-plantilla-usuario',//OK
+            'view-menu-lateral-cursos-plantilla-usuario',//OK
+            'view-menu-lateral-servicios-plantilla-usuario',//OK
+            'view-menu-lateral-roles',//OK
+            'view-menu-lateral-secciones',//OK
         ]);
 
          // Looping and Inserting Array's Permissions into Permission Table

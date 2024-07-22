@@ -23,7 +23,6 @@
                 $heads = [
                 ['label' => 'ID', 'no-export' => true, 'width' => 2],
                 ['label' => 'NOMBRE', 'classes'=>'text-center' ],
-                ['label' => 'FOTO', 'classes'=>'text-center' ],
                 ['label' => 'RUTA', 'classes'=>'text-center' ],
                 ['label' => 'ACCIONES', 'no-export' => true, 'width' => 5], ];
                 $config = ['data' => $models] ;

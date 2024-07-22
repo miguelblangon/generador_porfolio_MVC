@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 //Ver el portfolio por tag
-Route::get('/{codigo}', [App\Http\Controllers\VerPortfolioController::class, 'visualizarPorfolio']);
+Route::get('/visualizar/{codigo}', [App\Http\Controllers\VerPortfolioController::class, 'visualizarPorfolio'])->name('visualizar.porfolio');
 //Envio de email para la autenticacion
 Route::post('/code_mailer', [App\Http\Controllers\CodeAuthPasswordController::class, 'sendPassword'])->name('code_mailer')->middleware('checkip');
 //Autenticacion custom

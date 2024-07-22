@@ -18,7 +18,6 @@ class Plantilla extends Model
     protected $fillable = [
         'nombre',
         'ruta_plantilla',
-        'ruta_imagen',
     ];
     private function btnDetails(int $id):string {
 
@@ -46,7 +45,7 @@ class Plantilla extends Model
     }
 
 protected function getRowAttribute($value){
-    return [$this->id,$this->nombre, $this->imagen($this->ruta_imagen),$this->ruta_plantilla,'<nobr>'.$this->btnDelete($this->id).$this->btnDetails($this->id).'</nobr>'];
+    return [$this->id,$this->nombre,$this->ruta_plantilla,'<nobr>'.$this->btnDelete($this->id).$this->btnDetails($this->id).'</nobr>'];
 }
 
 }
