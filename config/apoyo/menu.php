@@ -88,5 +88,13 @@ return [
             'icon' => 'fas fa-folder',
             'can' => 'view-menu-lateral-secciones',
         ],
+        [
+            'text' => 'Noticias',
+            'url' => 'noticias',
+            'active' => ['noticias','noticias/create','noticias/*/edit'],
+            'icon' => 'fas fa-rss',
+            'can' => 'view-menu-lateral-noticias',
+        ],
 
 ];
+

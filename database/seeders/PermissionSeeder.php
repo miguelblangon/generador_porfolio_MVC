@@ -27,6 +27,7 @@ class PermissionSeeder extends Seeder
         'role',//OK
         'seccion',//OK
         'servicio',//OK
+        'noticia',//OK
         'user',
         ],[
             'view-menu-lateral-user',//OK
@@ -41,6 +42,7 @@ class PermissionSeeder extends Seeder
             'view-menu-lateral-servicios-plantilla-usuario',//OK
             'view-menu-lateral-roles',//OK
             'view-menu-lateral-secciones',//OK
+            'view-menu-lateral-noticias'//OK
         ]);
 
          // Looping and Inserting Array's Permissions into Permission Table
