@@ -76,6 +76,43 @@ if (!function_exists('municipio')) {
     }
 }
 
+if (!function_exists('verPlantilla')) {
+
+    function verPlantilla(\App\Models\PlantillaUsuario $porfolio){
+        $cursos = $porfolio->cursos;
+        $categorias = $cursos->map(function ($array) {return collect($array)->only(['categoria'])->unique()->all();});
+        $categorias = array_map("unserialize", array_unique(array_map("serialize", $categorias->toArray())));
+
+        return view('plantilla.plantillas_aplicacion.'.$porfolio->plantilla->nombre.'.index',[
+            'introduccion'=>$porfolio->introduccionPlantillaUsuario,
+            'about'=>$porfolio->aboutPlantillaUsuario,
+            'habilidades'=>$porfolio->habilidades,
+            'estudios'=>$porfolio->estudios,
+            'experiencias'=>$porfolio->experiencias,
+            'cursos'=>$cursos,
+            'categorias'=>$categorias,
+            'servicios'=>$porfolio->servicios,
+            'secciones'=> \App\Models\Seccion::all(),
+
+        ]);
+    }
+
+}
+
+
+if (!function_exists('verCurso')) {
+    function verCurso(\App\Models\Plantilla $plantilla,\App\Models\Curso $detalle){
+        return view('plantilla.plantillas_aplicacion.'.$plantilla->nombre.'.detalles',[
+            'curso'=>$detalle,
+            'about'=>$detalle->plantillaUsuario->aboutPlantillaUsuario
+        ]);
+
+    }
+
+}
+
+
+
 
 
 

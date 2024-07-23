@@ -30,29 +30,33 @@ class ExperienciaController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $array = [];
+        try {
+            $user = Auth::user();
+            $array = [];
 
-        if ($user->hasRole('Super Admin')) {
-            $model = Experiencia::orderBy('id','DESC')->get($this->parametrosCosulta());
-            foreach ($model as  $value) {
-                $array[]= $value->row;
+            if ($user->hasRole('Super Admin')) {
+                $model = Experiencia::orderBy('id','DESC')->get($this->parametrosCosulta());
+                foreach ($model as  $value) {
+                    $array[]= $value->row;
+                }
             }
+            if ($user->hasRole('User')) {
+                $plantilla = PlantillaUsuario::where('user_id',Auth::id())->get();
+                $model = Experiencia::whereBelongsTo($plantilla,'plantillaUsuario')->orderBy('id','DESC')->get($this->parametrosCosulta());
+
+                foreach ($model as  $value) {
+                    $array[]= $value->row;
+                }
+            }
+            return view($this->path.'.index', [
+                'models' => $array
+            ]);
+        } catch (\Throwable $th) {
+            return view($this->path.'.index', [
+                'models' => $array
+            ]);
         }
 
-        if ($user->hasRole('User')) {
-            $plantilla = PlantillaUsuario::where('user_id',Auth::id());
-            $model = Experiencia::whereBelongsTo($plantilla,'plantillaUsuario')->orderBy('id','DESC')->get($this->parametrosCosulta());
-
-            foreach ($model as  $value) {
-                $array[]= $value->row;
-            }
-        }
-
-
-        return view($this->path.'.index', [
-            'models' => $array
-        ]);
     }
 
     /**

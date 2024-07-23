@@ -13,7 +13,8 @@
 
 <div class="row">
     <div class="col-6">
-        <label for="formFile" class="form-label">Archivos</label>
+        <label for="formFile" class="form-label">Imagen</label>
+        <p>Es la imagen principal de fondo que se ve al principio de la plantilla, la cual tiene un tamaño grande</p>
         <input name="imagen" class="form-control" type="file" id="formFile" {{ isset($model)?null:'required' }} >
         @if ($errors->has('imagen'))
             <span class="text-danger">{{ $errors->first('imagen') }}</span>

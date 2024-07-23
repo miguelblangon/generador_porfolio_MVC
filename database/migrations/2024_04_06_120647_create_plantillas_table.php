@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('ruta_plantilla');
-            $table->string('ruta_imagen')->nullable();
             $table->timestamps();
         });
     }

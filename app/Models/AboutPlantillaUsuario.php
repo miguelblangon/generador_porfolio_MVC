@@ -28,7 +28,6 @@ class AboutPlantillaUsuario extends Model
         'nacimiento',
         'dip_viajar',
         'incorporacion',
-        'texto1',
         'texto2',
     ];
     public function plantillaUsuario(): BelongsTo

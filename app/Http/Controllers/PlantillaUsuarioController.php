@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PlantillaUsuarioRequest;
 use App\Models\Plantilla;
 use App\Models\PlantillaUsuario;
+use App\Models\Seccion;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,22 +45,9 @@ class PlantillaUsuarioController extends Controller
         ]);
     }
     public function show(PlantillaUsuario $porfolio){
-        $cursos = $porfolio->cursos;
-        $categorias = $cursos->map(function ($array) {return collect($array)->only(['categoria'])->unique()->all();});
-        $categorias = array_map("unserialize", array_unique(array_map("serialize", $categorias->toArray())));
-
-        return view('plantilla.plantillas_aplicacion.'.$porfolio->plantilla->nombre.'.index',[
-            'introduccion'=>$porfolio->introduccionPlantillaUsuario,
-            'about'=>$porfolio->aboutPlantillaUsuario,
-            'habilidades'=>$porfolio->habilidades,
-            'estudios'=>$porfolio->estudios,
-            'experiencias'=>$porfolio->experiencias,
-            'cursos'=>$cursos,
-            'categorias'=>$categorias,
-            'servicios'=>$porfolio->servicios,
-
-        ]);
+        return verPlantilla($porfolio);
     }
+
     public function create(){
 
         return view('porfolio.create',['coleccion'=>Plantilla::get(['id','nombre'])->pluck('nombre','id')->toArray()]);

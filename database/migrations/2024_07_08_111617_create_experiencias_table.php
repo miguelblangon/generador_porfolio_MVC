@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('experiencias', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('plantilla_usuario_id')->constrained();
+            $table->foreignId('plantilla_usuario_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('nombre')->nullable();
             $table->integer('year_inicio')->nullable();
             $table->string('year_fin')->nullable();

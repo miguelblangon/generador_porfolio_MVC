@@ -21,29 +21,37 @@ class IntroduccionPlantillaUsuarioController extends Controller
         $this->middleware('permission:delete-introduccion-plantilla-usuario', ['only' => ['destroy']]);
     }
     public function index(){
-        $user = Auth::user();
-        $array = [];
+        try {
+            $user = Auth::user();
+            $array = [];
 
-        if ($user->hasRole('Super Admin')) {
-            $model = IntroduccionPlantillaUsuario::orderBy('id','DESC')->get(['id','plantilla_usuario_id','nombre','url_foto','frase_introductoria']);
-            foreach ($model as  $value) {
-                $array[]= $value->row;
+            if ($user->hasRole('Super Admin')) {
+                $model = IntroduccionPlantillaUsuario::orderBy('id','DESC')->get(['id','plantilla_usuario_id','nombre','url_foto','frase_introductoria']);
+                foreach ($model as  $value) {
+                    $array[]= $value->row;
+                }
             }
+
+            if ($user->hasRole('User')) {
+                $plantilla = PlantillaUsuario::where('user_id',Auth::id())->get();
+
+                $model = IntroduccionPlantillaUsuario::whereBelongsTo($plantilla,'plantillaUsuario') ->orderBy('id','DESC')->get(['id','plantilla_usuario_id','nombre' ,'url_foto','frase_introductoria']);
+                foreach ($model as  $value) {
+                    $array[]= $value->row;
+                }
+            }
+
+
+            return view('introduccion.index', [
+                'models' => $array
+            ]);
+
+        } catch (\Throwable $th) {
+            return view('introduccion.index', [
+                'models' => []
+            ]);
         }
 
-        if ($user->hasRole('User')) {
-            $plantilla = PlantillaUsuario::where('user_id',Auth::id());
-            $model = IntroduccionPlantillaUsuario::whereBelongsTo($plantilla,'plantillaUsuario')->orderBy('id','DESC')->get(['id','plantilla_usuario_id','nombre' ,'url_foto','frase_introductoria']);
-
-            foreach ($model as  $value) {
-                $array[]= $value->row;
-            }
-        }
-
-
-        return view('introduccion.index', [
-            'models' => $array
-        ]);
     }
     public function create(){
 

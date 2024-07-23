@@ -19,7 +19,6 @@
     @include('componentes.text',['col'=>6,'label'=>'Incorporación','name'=>'incorporacion','place'=>'Incorporación','value'=>isset($model)?$model->incorporacion:'','req'=>1  ])
 </div>
 <div class="row">
-    @include('componentes.textArea',['col'=>6,'name'=>'texto1','label'=>'Texto Superior','row'=>6,'value'=>isset($model)?$model->texto1:'' ] )
     @include('componentes.textArea',['col'=>6,'name'=>'texto2','label'=>'Texto Inferior','row'=>6,'value'=>isset($model)?$model->texto2:'' ] )
 </div>
 

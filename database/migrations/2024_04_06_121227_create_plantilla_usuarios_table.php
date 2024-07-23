@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('plantilla_usuarios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('plantilla_id')->constrained();
+            $table->foreignId('plantilla_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->constrained();
             $table->string('nombre');
             $table->string('url');

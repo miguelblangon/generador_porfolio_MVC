@@ -38,17 +38,6 @@ class UserController extends Controller
             'models' => $array
         ]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(): View
-    {
-        return view('users.create', [
-            'roles' => Role::pluck('name')->all()
-        ]);
-    }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -65,16 +54,6 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(User $user): View
-    {
-        return view('users.show', [
-            'user' => $user
-        ]);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(User $user): View
@@ -87,7 +66,7 @@ class UserController extends Controller
         }
         return view('users.edit', [
             'user' => $user,
-            'roles' => Role::pluck('name','name')->all(),
+            'roles' => Role::get(['id','name'])->pluck('name','name')->toArray(),
             'userRoles' => $user->roles->pluck('name','name')->toArray(),
             'permission'=>Permission::pluck('name','name')->toArray(),
             'userPermission'=>$user->getAllPermissions()->pluck('name')->toArray(),

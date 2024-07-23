@@ -13,9 +13,6 @@
 
 {{-- Minimal without header / body only --}}
 <x-adminlte-card theme="lightblue" theme-mode="outline">
-    <div class="row">
-        @include('componentes.EnlaceParam',["ruta"=>'users.create','color'=>'success','mensaje'=>'Crear' ])
-    </div>
     <div class="row pt-2">
         <div class="col-12">
             {{-- Setup data for datatables --}}

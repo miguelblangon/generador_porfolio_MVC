@@ -27,13 +27,6 @@ class RoleController extends Controller
                 </a>';
 
     }
-    private function btnDetails(int $id):string {
-
-        return '<a href="'.route("roles.show",$id).'" class="btn btn-xs btn-default text-teal mx-1 shadow" title="Detalles">
-                    <i class="fa fa-lg fa-fw fa-eye"></i>
-                </a>';
-
-    }
     private function btnDelete(int $id):string {
 
         return '
@@ -56,7 +49,7 @@ class RoleController extends Controller
         $roles = Role::orderBy('id','DESC')->get(['id','name']);
         $array = [];
             foreach ($roles as $value) {
-                $array[]= [$value->id,$value->name,'<nobr>'.$this->btnEdit($value->id).$this->btnDelete($value->id).$this->btnDetails($value->id).'</nobr>'];
+                $array[]= [$value->id,$value->name,'<nobr>'.$this->btnEdit($value->id).$this->btnDelete($value->id).'</nobr>'];
             }
         return view('roles.index', [
             'roles' => $array
@@ -82,22 +75,6 @@ class RoleController extends Controller
         return redirect()->route('roles.edit', $role->id)
                 ->with(['message'=>'Rol Creado con exito','icon'=>'success']);
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Role $role): View
-    {
-        $rolePermissions = Permission::join("role_has_permissions","permission_id","=","id")
-            ->where("role_id",$role->id)
-            ->select('name')
-            ->get();
-        return view('roles.show', [
-            'role' => $role,
-            'rolePermissions' => $rolePermissions
-        ]);
-    }
-
     /**
      * Show the form for editing the specified resource.
      */

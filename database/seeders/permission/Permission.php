@@ -22,7 +22,7 @@ class Permission{
 
         if ($this->unicos) {
             foreach ($this->unicos as $value) {
-                $permission[]='view-'.$value;
+                $permission[]=$value;
             }
         }
 

@@ -17,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+//Ver el portfolio por tag
+Route::get('/visualizar/{codigo}', [App\Http\Controllers\VerPortfolioController::class, 'visualizarPorfolio'])->name('visualizar.porfolio');
+//Envio de email para la autenticacion
 Route::post('/code_mailer', [App\Http\Controllers\CodeAuthPasswordController::class, 'sendPassword'])->name('code_mailer')->middleware('checkip');
+//Autenticacion custom
 Route::post('/code_autentication', [App\Http\Controllers\CodeAuthPasswordController::class, 'autenticationCode'])->name('code_autentication')->middleware('checkip');
 
 Auth::routes();
@@ -29,6 +33,7 @@ Route::resources([
     'roles' => App\Http\Controllers\RoleController::class,
     'users' => App\Http\Controllers\UserController::class,
     'plantillas' => App\Http\Controllers\PlantillaController::class,
+    'secciones' => App\Http\Controllers\SeccionController::class,
     //Usuarios
     'porfolio' => App\Http\Controllers\PlantillaUsuarioController::class,
     'introduccion' => App\Http\Controllers\IntroduccionPlantillaUsuarioController::class,
@@ -40,6 +45,6 @@ Route::resources([
     'servicios'=>App\Http\Controllers\ServicioController::class,
 
 ]);
-Route::get('/plantillas/{plantilla}/detalles/{detalle}', [App\Http\Controllers\PlantillaController::class, 'detallesPlantillas'])->name('plantillas.detalles');
+Route::get('/plantillas/{plantilla}/detalles/{detalle}', [App\Http\Controllers\VerPortfolioController::class, 'visualizarCurso'])->name('plantillas.detalles');
 //Ajax
 Route::get('/ajax-poblaciones/{id?}', [App\Http\Controllers\AjaxController::class, 'poblaciones'])->name('ajax-poblaciones');

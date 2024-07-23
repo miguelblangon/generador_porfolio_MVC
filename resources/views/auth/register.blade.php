@@ -37,12 +37,10 @@
                         </p>
                       </div>
                     </div>
-                    <div class="form-check d-flex justify-content-center mb-5">
-                      <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
-                      <label class="form-check-label" for="form2Example3">
-                        Estoy de acuerdo con todas las declaraciones en los <a href="#!">Terminos de servicio</a>
-                      </label>
-                    </div>
+                    <p>Al 'Registro' aceptas la política de uso</p>
+                    <a type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#politica">
+                        Política de Uso
+                    </a>
 
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                       <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg">Registro</button>
@@ -63,4 +61,5 @@
       </div>
     </div>
   </section>
+@include('auth.politicaUso')
 @endsection

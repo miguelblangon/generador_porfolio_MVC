@@ -27,6 +27,8 @@ class EstudioController extends Controller
      */
     public function index()
     {
+        try {
+
         $user = Auth::user();
         $array = [];
 
@@ -38,7 +40,7 @@ class EstudioController extends Controller
         }
 
         if ($user->hasRole('User')) {
-            $plantilla = PlantillaUsuario::where('user_id',Auth::id());
+            $plantilla = PlantillaUsuario::where('user_id',Auth::id())->get();
             $model = Estudio::whereBelongsTo($plantilla,'plantillaUsuario')->orderBy('id','DESC')->get($this->parametrosCosulta());
 
             foreach ($model as  $value) {
@@ -50,6 +52,12 @@ class EstudioController extends Controller
         return view($this->path.'.index', [
             'models' => $array
         ]);
+        } catch (\Throwable $th) {
+            return view($this->path.'.index', [
+                'models' => $array
+            ]);
+        }
+
     }
 
     /**

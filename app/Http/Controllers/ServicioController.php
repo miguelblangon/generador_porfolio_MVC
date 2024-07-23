@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CursoRequest;
+
 use App\Http\Requests\ServicioRequest;
 use App\Models\PlantillaUsuario;
 use App\Models\Servicio;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ServicioController extends Controller
@@ -32,27 +31,35 @@ class ServicioController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $array = [];
+        try {
+            $user = Auth::user();
+            $array = [];
 
-        if ($user->hasRole('Super Admin')) {
-            $model = Servicio::orderBy('id','DESC')->get($this->parametrosCosulta());
-            foreach ($model as  $value) {
-                $array[]= $value->row;
+            if ($user->hasRole('Super Admin')) {
+                $model = Servicio::orderBy('id','DESC')->get($this->parametrosCosulta());
+                foreach ($model as  $value) {
+                    $array[]= $value->row;
+                }
             }
+
+            if ($user->hasRole('User')) {
+                $plantilla = PlantillaUsuario::where('user_id',Auth::id())->get();
+                $model = Servicio::whereBelongsTo($plantilla,'plantillaUsuario')->orderBy('id','DESC')->get($this->parametrosCosulta());
+
+                foreach ($model as  $value) {
+                    $array[]= $value->row;
+                }
+            }
+            return view($this->path.'.index', [
+                'models' => $array
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return view($this->path.'.index', [
+                'models' => $array
+            ]);
         }
 
-        if ($user->hasRole('User')) {
-            $plantilla = PlantillaUsuario::where('user_id',Auth::id());
-            $model = Servicio::whereBelongsTo($plantilla,'plantillaUsuario')->orderBy('id','DESC')->get($this->parametrosCosulta());
-
-            foreach ($model as  $value) {
-                $array[]= $value->row;
-            }
-        }
-        return view($this->path.'.index', [
-            'models' => $array
-        ]);
     }
 
     /**
