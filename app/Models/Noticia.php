@@ -41,18 +41,14 @@ class Noticia extends Model
         </button>
         </form>';
     }
-    private function cuerpo(string $cuerpo):string {
-        return $value = Str::limit($cuerpo, 30, '...');
+    private function cadenaTratada($cadena) {
 
+
+        return Str::limit(strip_tags($cadena));
     }
+
     protected function getRowAttribute($value){
-        return [$this->id,$this->titulo, $this->cuerpo($this->cuerpo),$this->autor,'<nobr>'.$this->btnEdit($this->id).$this->btnDelete($this->id).'</nobr>'];
+        return [$this->id,$this->titulo, $this->cadenaTratada($this->cuerpo),$this->autor,'<nobr>'.$this->btnEdit($this->id).$this->btnDelete($this->id).'</nobr>'];
     }
-
-
-
-
-
-
 
 }
