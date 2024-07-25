@@ -6,6 +6,7 @@
 
 @section('content')
  <section>
+    <h3 class="h3 text-center">Proceso de creación de usuario</h3>
     @if ($errors->any())
         <div class="text-center mb-2 mt-2">
             <div class="alert alert-danger">
@@ -36,8 +37,9 @@
                   </p>
                 </div>
               </div>
-              <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                <button  type="submit"  class="btn btn-primary btn-lg" style="color: black">Registro</button>
+              <div class="col text-center">
+                <button  type="submit"  class="btn btn-primary" style="color: black">Registro</button>
+                <a href="{{ route('login') }}" class="btn btn-secondary mr-3">{{  __('Login')  }}</a>
               </div>
         </div>
 

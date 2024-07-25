@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\RedirectsUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -20,9 +23,7 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
-    use RegistersUsers;
-
+    use RedirectsUsers;
     /**
      * Where to redirect users after registration.
      *
@@ -39,7 +40,6 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-
     /**
      * Get a validator for an incoming registration request.
      *
@@ -56,6 +56,31 @@ class RegisterController extends Controller
     }
 
     /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        event(new Registered($this->create($request->all())));
+        return view('auth.login',['mensaje'=>'usuario registrado correctamente','css'=>'success']);
+    }
+
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
+
+
+    /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
@@ -69,5 +94,14 @@ class RegisterController extends Controller
             'password' => Hash::make('009g213R@y400ñ95872#'),
         ])->assignRole('User');
 
+    }
+      /**
+     * Get the guard to be used during registration.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard();
     }
 }
