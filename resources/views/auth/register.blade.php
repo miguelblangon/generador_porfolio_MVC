@@ -6,6 +6,17 @@
 
 @section('content')
  <section>
+    @if ($errors->any())
+        <div class="text-center mb-2 mt-2">
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
     <form  method="POST" action="{{ route('register') }}" class="mx-1 mx-md-4">
         @csrf
         <div class="card px-4" style="min-height: 40vh">
