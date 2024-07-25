@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome',['noticias'=>App\Models\Noticia::all()]);
 });
 //Ver el portfolio por tag
 Route::get('/visualizar/{codigo}', [App\Http\Controllers\VerPortfolioController::class, 'visualizarPorfolio'])->name('visualizar.porfolio');
@@ -34,6 +35,7 @@ Route::resources([
     'users' => App\Http\Controllers\UserController::class,
     'plantillas' => App\Http\Controllers\PlantillaController::class,
     'secciones' => App\Http\Controllers\SeccionController::class,
+    'noticias'=>App\Http\Controllers\NoticiaController::class,
     //Usuarios
     'porfolio' => App\Http\Controllers\PlantillaUsuarioController::class,
     'introduccion' => App\Http\Controllers\IntroduccionPlantillaUsuarioController::class,
@@ -43,8 +45,6 @@ Route::resources([
     'experiencias'=>App\Http\Controllers\ExperienciaController::class,
     'cursos'=>App\Http\Controllers\CursoController::class,
     'servicios'=>App\Http\Controllers\ServicioController::class,
-    'noticias'=>App\Http\Controllers\NoticiaController::class,
-
 ]);
 Route::get('/plantillas/{plantilla}/detalles/{detalle}', [App\Http\Controllers\VerPortfolioController::class, 'visualizarCurso'])->name('plantillas.detalles');
 //Ajax

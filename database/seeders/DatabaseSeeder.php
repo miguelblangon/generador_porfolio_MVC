@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             SeccionesSeeder::class,
+            NoticiaSeeder::class,
         ]);
         Artisan::call('import:provincias-municipios');
     }
