@@ -57,6 +57,13 @@ return [
             'icon' => 'fas fa-hand-holding-usd',
             'can' => 'view-menu-lateral-servicios-plantilla-usuario',
         ],
+        [
+            'text' => 'Home',
+            'url' => 'home',
+            'active' => ['home'],
+            'icon' => 'fab fa-fort-awesome',
+            //'can' => 'view-menu-lateral-plantilla-usuario',
+        ],
 
         //Admins
         ['header' => 'Acceso restringido', 'can' => 'view-menu-lateral-menu'],
