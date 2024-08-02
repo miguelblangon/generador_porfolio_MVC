@@ -14,7 +14,7 @@ class PlantillaController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('permission:create-plantilla|edit-plantilla|delete-plantilla', ['only' => ['index','show']]);
+        $this->middleware('permission:create-plantilla|edit-plantilla|delete-plantilla|view-plantilla', ['only' => ['index','show']]);
         $this->middleware('permission:create-plantilla', ['only' => ['create','store']]);
         $this->middleware('permission:edit-plantilla', ['only' => ['edit','update']]);
         $this->middleware('permission:delete-plantilla', ['only' => ['destroy']]);
