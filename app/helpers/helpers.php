@@ -14,7 +14,7 @@ if (!function_exists('extraer_zip')) {
     function extraer_zip($entrada,$salida){
         $zip = new ZipArchive();
     	    if ($zip->open( storage_path('app/'.$entrada) ) !== true) {
-    	    throw new \Exception('Could not download zip file');
+    	    throw new \Exception('No se puede abrir el archivo');
 	    }
         $zip->extractTo(base_path($salida));
 	    $zip->close();
@@ -65,13 +65,13 @@ if (!function_exists('proteccion')) {
 }
 if (!function_exists('provincia')) {
     function provincia(int $provincia){
-        return DB::table('provincias')->select('Provincia')->where('idProvincia',$provincia)->first()->Provincia;
+        return DB::table('PROVINCIAS')->select('Provincia')->where('idProvincia',$provincia)->first()->Provincia;
 
     }
 }
 if (!function_exists('municipio')) {
     function municipio(int $municipio){
-        return DB::table('municipios')->select('Municipio')->where('idMunicipio',$municipio)->first()->Municipio;
+        return DB::table('MUNICIPIOS')->select('Municipio')->where('idMunicipio',$municipio)->first()->Municipio;
 
     }
 }

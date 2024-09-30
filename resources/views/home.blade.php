@@ -10,7 +10,7 @@
 {{-- Content body: main page content --}}
 
 @section('content_body')
-<x-adminlte-card title="Tutorial" theme="primary" icon="fas fa-user-graduate" removable  >
+<x-adminlte-card title="Tutorial" theme="primary" icon="fas fa-user-graduate" removable collapsible="collapsed"  >
     {{-- collapsible="collapsed" --}}
 <div class="row">
     <div class="col">

@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Storage;
 class AboutPlantillaUsuarioController extends Controller
 {
     private function provincias(){
-        return DB::table('provincias')->select('idProvincia','Provincia')->pluck('Provincia','idProvincia')->toArray();
+        return DB::table('PROVINCIAS')->select('idProvincia','Provincia')->pluck('Provincia','idProvincia')->toArray();
     }
     private function municipios( $provincia ){
-        return DB::table('municipios')->select('idMunicipio','Municipio')->where('idProvincia',$provincia)->pluck('Municipio','idMunicipio')->toArray();
+        return DB::table('MUNICIPIOS')->select('idMunicipio','Municipio')->where('idProvincia',$provincia)->pluck('Municipio','idMunicipio')->toArray();
     }
 
 

@@ -21,7 +21,7 @@
 
     @csrf
     <x-adminlte-card title="Datos Plantilla" theme="primary" icon="fas fa-lg fa-fan" removable collapsible>
-        @include('plantilla.form.input')
+        @include('plantilla.form.Input')
     </x-adminlte-card>
     @include('componentes.btnEnviar',['mensaje'=>'Crear'])
 </form>
