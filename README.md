@@ -59,10 +59,10 @@ _Una vez ejecutado los pasos anteriores crear la base de datos y lanzar el coman
 ```
 php artisan migrate
 ```
-_Una vez ejecutado los pasos anteriores crear la base de datos y lanzar el comando para la creación de las tablas:_
+_modificar el archivo UserSeeder que se encuentra dentro de la carpeta seeder dentro de database_
 
 ```
-php artisan migrate
+asdasdasd
 ```
 
 
