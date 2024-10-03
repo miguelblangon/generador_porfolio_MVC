@@ -1,6 +1,6 @@
 # Título del Proyecto
 
-_Acá va un párrafo que describa lo que es el proyecto_
+_Generador de porfolios mediante plantillas_
 
 ## Comenzando 🚀
 
@@ -14,50 +14,58 @@ Mira **Deployment** para conocer como desplegar el proyecto.
 _Que cosas necesitas para instalar el software y como instalarlas_
 
 ```
-Da un ejemplo
+PHP en su versión 8.1 y MySql
 ```
 
 ### Instalación 🔧
 
-_Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
+_Una instalación paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
 
-_Dí cómo será ese paso_
-
-```
-Da un ejemplo
-```
-
-_Y repite_
+_1 Clonar el repositorio_
 
 ```
-hasta finalizar
+ git clone https://github.com/miguelblangon/generador_porfolio_MVC.git
 ```
 
-_Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
-
-## Ejecutando las pruebas ⚙️
-
-_Explica como ejecutar las pruebas automatizadas para este sistema_
-
-### Analice las pruebas end-to-end 🔩
-
-_Explica que verifican estas pruebas y por qué_
+_Instala dependencias:_
 
 ```
-Da un ejemplo
+composer install
+npm install
 ```
 
-### Y las pruebas de estilo de codificación ⌨️
-
-_Explica que verifican estas pruebas y por qué_
+_Generar archivo .env y modificar su contenido_
 
 ```
-Da un ejemplo
+cp .env.example .env
+```
+_Genera la clave de la aplicación:_
+
+```
+php artisan key:generate
 ```
 
+_Añadir las siguientes linieas al archivo .env para el envio de correos_
+
+```
+MAIL_USERNAME=mail@mail.com
+MAIL_PASSWORD='myPass'
+MAIL_FROM_ADDRESS="email@email.com"
+```
 ## Despliegue 📦
 
-_Agrega notas adicionales sobre como hacer deploy_
+_Una vez ejecutado los pasos anteriores crear la base de datos y lanzar el comando para la creación de las tablas:_
+
+```
+php artisan migrate
+```
+_Una vez ejecutado los pasos anteriores crear la base de datos y lanzar el comando para la creación de las tablas:_
+
+```
+php artisan migrate
+```
+
+
 
 ## Construido con 🛠️
 
@@ -104,39 +112,3 @@ Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md
 
 ---
 ⌨️ con ❤️ por [Villanuevand](https://github.com/Villanuevand) 😊
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/miguelblangon/generador_porfolio_MVC.git
-
-
-2. Instala dependencias:
-´´´
-composer install
-npm install
-´´´
-3. Generar archivo .env y modificar su contenido
-´´´
-cp .env.example .env
-´´´
-4. Genera la clave de la aplicación:
-´´´
-php artisan key:generate
-´´´
