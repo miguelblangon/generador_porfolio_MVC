@@ -6,8 +6,9 @@
 ## Instalación
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tuusuario/portfolio-generator.git
-´´´
+   git clone https://github.com/miguelblangon/generador_porfolio_MVC.git
+
+
 2. Instala dependencias:
 ´´´
 composer install
