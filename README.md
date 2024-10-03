@@ -1,9 +1,13 @@
+title: Contributing to projects with GitHub Desktop
+shortTitle: Contributing to projects
+
+
 # Portfolio Generator - Crea tu portfolio fácilmente
 
 <p>
     ¡Bienvenido al Generador de Portfolios! Esta herramienta te permite crear portafolios profesionales en minutos, personalizando diseños y contenido según tus necesidades.
 </p>
-## Instalación
+# Instalación
 1. Clona el repositorio:
    ```bash
    git clone https://github.com/miguelblangon/generador_porfolio_MVC.git
