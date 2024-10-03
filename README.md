@@ -1,25 +1,23 @@
-#Índice
+# Portfolio Generator - Crea tu portfolio fácilmente
 
-*[Título e imagen de portada](#Título-e-imagen-de-portada)
-
-*[Insignias](#insignias)
-
-*[Índice](#índice)
-
-*[Descripción del proyecto](#descripción-del-proyecto)
-
-*[Estado del proyecto](#Estado-del-proyecto)
-
-*[Características de la aplicación y demostración](#Características-de-la-aplicación-y-demostración)
-
-*[Acceso al proyecto](#acceso-proyecto)
-
-*[Tecnologías utilizadas](#tecnologías-utilizadas)
-
-*[Personas Contribuyentes](#personas-contribuyentes)
-
-*[Personas-Desarrolladores del Proyecto](#personas-desarrolladores)
-
-* [Licencia](#licencia)
-
-*[Conclusión](#conclusión)
+<p>
+    ¡Bienvenido al Generador de Portfolios! Esta herramienta te permite crear portafolios profesionales en minutos, personalizando diseños y contenido según tus necesidades.
+</p>
+## Instalación
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/tuusuario/portfolio-generator.git
+´´´
+2. Instala dependencias:
+´´´
+composer install
+npm install
+´´´
+3. Generar archivo .env y modificar su contenido
+´´´
+cp .env.example .env
+´´´
+4. Genera la clave de la aplicación:
+´´´
+php artisan key:generate
+´´´
